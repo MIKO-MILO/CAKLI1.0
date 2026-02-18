@@ -9,13 +9,22 @@ class SplashscreenView extends GetView<SplashscreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(
-        child: Image(
-          image: AssetImage('assets/images/logo.png'),
-          width: 200,
-          height: 200,
+      body: Obx(() => AnimatedContainer(
+        duration: const Duration(milliseconds: 500),
+        width: double.infinity,
+        height: double.infinity,
+        color: controller.bgColor.value,
+        child: Center(
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 500),
+            opacity: controller.opacity.value,
+            child: Image.asset(
+              controller.imagePath.value,
+              width: 200,
+            ),
+          ),
         ),
-      ),
+      )),
     );
   }
 }

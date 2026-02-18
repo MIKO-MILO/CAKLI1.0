@@ -19,6 +19,7 @@ class HomeView extends GetView<HomeController> {
           style: TextStyle(fontSize: 20),
         ),
       ),
+      
     );
   }
 }
