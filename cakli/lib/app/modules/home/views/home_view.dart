@@ -62,27 +62,25 @@ class HomeView extends GetView<HomeController> {
               right: 0,
               child: Center(
                 child: Container(
-                  width: 350,
+                  width: MediaQuery.of(context).size.width * 0.35,
                   height: 250,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                   ),
-
-                  child: Expanded(
-                    child: FlutterMap(
-                      options: MapOptions(
-                        initialCenter: LatLng(-6.200000, 106.816666),
-                        initialZoom: 14,
-                      ),
-                      children: [
-                        TileLayer(
-                          urlTemplate:
-                              'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                          userAgentPackageName: 'com.example.app',
-                        ),
-                      ],
+                  clipBehavior: Clip.hardEdge,
+                  child: FlutterMap(
+                    options: MapOptions(
+                      initialCenter: LatLng(-6.200000, 106.816666),
+                      initialZoom: 14,
                     ),
+                    children: [
+                      TileLayer(
+                        urlTemplate:
+                            'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        userAgentPackageName: 'com.example.app',
+                      ),
+                    ],
                   ),
                 ),
               ),
