@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 class MaptestController extends GetxController {
-  //TODO: Implement MaptestController
 
   final count = 0.obs;
 
