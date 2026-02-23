@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
 
+import '../modules/editprofile/bindings/editprofile_binding.dart';
+import '../modules/editprofile/views/editprofile_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/maptest/bindings/maptest_binding.dart';
 import '../modules/maptest/views/maptest_view.dart';
+import '../modules/setting/bindings/setting_binding.dart';
+import '../modules/setting/views/setting_view.dart';
 import '../modules/splashscreen/bindings/splashscreen_binding.dart';
 import '../modules/splashscreen/views/splashscreen_view.dart';
 
@@ -30,6 +34,16 @@ class AppPages {
       name: _Paths.MAPTEST,
       page: () => const MaptestView(),
       binding: MaptestBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDITPROFILE,
+      page: () => const EditprofileView(),
+      binding: EditprofileBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETTING,
+      page: () => const SettingView(),
+      binding: SettingBinding(),
     ),
   ];
 }

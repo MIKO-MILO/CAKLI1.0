@@ -9,6 +9,8 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   // ignore: constant_identifier_names
   static const MAPTEST = _Paths.MAPTEST;
+  static const EDITPROFILE = _Paths.EDITPROFILE;
+  static const SETTING = _Paths.SETTING;
 }
 
 abstract class _Paths {
@@ -19,4 +21,6 @@ abstract class _Paths {
   static const HOME = '/home';
   // ignore: constant_identifier_names
   static const MAPTEST = '/maptest';
+  static const EDITPROFILE = '/editprofile';
+  static const SETTING = '/setting';
 }

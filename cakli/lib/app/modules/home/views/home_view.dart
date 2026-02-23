@@ -1,3 +1,4 @@
+import 'package:cakli/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:http/http.dart' as http;
@@ -71,6 +72,7 @@ class HomeView extends GetView<HomeController> {
     const double overlapOffset = 100.0;
 
     return Scaffold(
+      backgroundColor: const Color(0xFFEBE8E8),
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -88,11 +90,16 @@ class HomeView extends GetView<HomeController> {
                 Positioned(
                   left: MediaQuery.of(context).size.width * 0.80,
                   bottom: MediaQuery.of(context).size.height * 0.47,
-                  child: Image.asset(
-                    'assets/images/home/User.png',
-                    width: 100,
-                    height: 100,
-                  ),
+                  child: GestureDetector(
+                    onTap: (){
+                      Get.toNamed(Routes.SETTING);
+                    },
+                    child: Image.asset(
+                      'assets/images/home/User.png',
+                      width: 100,
+                      height: 100,
+                    ),
+                  )
                 ),
                 
                 Positioned(
@@ -410,7 +417,7 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
           ],
         ),
       ),
