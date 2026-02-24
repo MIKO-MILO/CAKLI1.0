@@ -99,6 +99,10 @@ flutter:
     - assets/images/home/
     - assets/images/icon/
     - assets/images/setting/
+    - assets/images/editprofile/
+    - assets/images/editemail/
+    - assets/images/editpin/
+
     
 
 

@@ -11,6 +11,9 @@ abstract class Routes {
   static const MAPTEST = _Paths.MAPTEST;
   static const EDITPROFILE = _Paths.EDITPROFILE;
   static const SETTING = _Paths.SETTING;
+  static const EMAIL = _Paths.EMAIL;
+  static const EDITPIN = _Paths.EDITPIN;
+  static const EDITEMAIL = _Paths.EDITEMAIL;
 }
 
 abstract class _Paths {
@@ -23,4 +26,7 @@ abstract class _Paths {
   static const MAPTEST = '/maptest';
   static const EDITPROFILE = '/editprofile';
   static const SETTING = '/setting';
+  static const EMAIL = '/email';
+  static const EDITPIN = '/editpin';
+  static const EDITEMAIL = '/editemail';
 }

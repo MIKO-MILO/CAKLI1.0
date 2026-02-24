@@ -1,9 +1,7 @@
 import 'package:cakli/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-
 import 'package:get/get.dart';
-
 import '../controllers/setting_controller.dart';
 
 class SettingView extends GetView<SettingController> {
@@ -113,7 +111,7 @@ class SettingView extends GetView<SettingController> {
                           leading: const Icon(Icons.shield),
                           title: const Text('Ganti Email'),
                           onTap: () {
-                            // Aksi saat menu Akun ditekan
+                            Get.toNamed(Routes.EDITEMAIL);
                           },
                         ),
                         ListTile(
@@ -121,6 +119,7 @@ class SettingView extends GetView<SettingController> {
                           title: const Text('Ganti PIN E-Wallet'),
                           onTap: () {
                             // Aksi saat menu Notifikasi ditekan
+                            Get.toNamed(Routes.EDITPIN);
                           },
                         ),
                         ListTile(

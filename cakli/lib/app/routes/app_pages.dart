@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
 
+import '../modules/editemail/bindings/editemail_binding.dart';
+import '../modules/editemail/views/editemail_view.dart';
+import '../modules/editpin/bindings/editpin_binding.dart';
+import '../modules/editpin/views/editpin_view.dart';
 import '../modules/editprofile/bindings/editprofile_binding.dart';
 import '../modules/editprofile/views/editprofile_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -44,6 +48,16 @@ class AppPages {
       name: _Paths.SETTING,
       page: () => const SettingView(),
       binding: SettingBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDITPIN,
+      page: () => const EditpinView(),
+      binding: EditpinBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDITEMAIL,
+      page: () => const EditemailView(),
+      binding: EditemailBinding(),
     ),
   ];
 }

@@ -1,69 +1,34 @@
-import 'package:cakli/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:cakli/app/routes/app_pages.dart';
 import 'package:get/get.dart';
-import '../controllers/editprofile_controller.dart';
 
-class EditprofileView extends GetView<EditprofileController> {
-  const EditprofileView({super.key});
+import '../controllers/editemail_controller.dart';
+
+class EditemailView extends GetView<EditemailController> {
+  const EditemailView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEBE8E8),
       appBar: AppBar(
-        title: Text('Edit Profile'),
+        title: const Text('EmailView'),
         backgroundColor: const Color(0xFFEBE8E8),
       ),
-
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             children: [
-              const SizedBox(height: 70),
-
-              GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return Dialog(
-                        backgroundColor: Colors.transparent,
-                        child: GestureDetector(
-                          onTap: () => Navigator.pop(context), // klik tutup
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              'assets/images/editprofile/profile.png', // ganti sesuai gambar kamu
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: CircleAvatar(
-                  radius: 45,
-                  backgroundImage: AssetImage('assets/images/editprofile/profile.png'),
-                ),
-              ),
-
-              const SizedBox(height: 12),
-
-              TextButton(
-                onPressed: () {
-                  print('Klik Edit Foto');
-                },
-                child: const Text(
-                  'Edit Foto',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+              Image.asset(
+                'assets/images/editemail/icon.png',
+                width: 200,
+                height: 200,
               ),
 
               const SizedBox(height: 40),
 
               TextFormField(
-                initialValue: "Ustadzah",
+                initialValue: "mimimimimi@gmail.com",
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
@@ -74,38 +39,7 @@ class EditprofileView extends GetView<EditprofileController> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "Nama",
-                        style: TextStyle(fontSize: 16, color: Colors.black54),
-                      ),
-                      SizedBox(width: 4),
-                      Text("*", style: TextStyle(color: Colors.red)),
-                    ],
-                  ),
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 24),
-
-              TextFormField(
-                initialValue: "08123456567",
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black87,
-                ),
-                decoration: const InputDecoration(
-                  label: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        "Nomor Telepon",
+                        "Email",
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                       SizedBox(width: 4),
@@ -136,7 +70,7 @@ class EditprofileView extends GetView<EditprofileController> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "Email",
+                        "Masukkan Email Kembali",
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                       SizedBox(width: 4),
@@ -170,7 +104,7 @@ class EditprofileView extends GetView<EditprofileController> {
                     ),
                   ),
                   child: const Text(
-                    'Simpan',
+                    'Verifikasi',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
