@@ -126,7 +126,7 @@ class SettingView extends GetView<SettingController> {
                           leading: const Icon(Icons.bookmark),
                           title: const Text('Alamat Tersimpan'),
                           onTap: () {
-                            // Aksi saat menu Privasi ditekan
+                            Get.toNamed(Routes.EDITALAMAT);
                           },
                         ),
 
@@ -145,13 +145,22 @@ class SettingView extends GetView<SettingController> {
                             // Aksi saat menu Privasi ditekan
                           },
                         ),
+
+                        ListTile(
+                          leading: const Icon(Symbols.settings, fill: 1),
+                          title: const Text('MAPTEST'),
+                          onTap: () {
+                            Get.toNamed(Routes.MAPTEST);
+                          },
+                        ),
                       ],
                     ),
                   ),
                 ),
 
                 Positioned(
-                  top: MediaQuery.of(context).size.height * 0.69,
+                  // top: MediaQuery.of(context).size.height * 0.69,
+                  top: MediaQuery.of(context).size.height * 0.73,
                   left: 30,
                   right: 30,
                   child: Container(

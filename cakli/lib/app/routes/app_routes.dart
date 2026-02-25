@@ -14,6 +14,10 @@ abstract class Routes {
   static const EMAIL = _Paths.EMAIL;
   static const EDITPIN = _Paths.EDITPIN;
   static const EDITEMAIL = _Paths.EDITEMAIL;
+  static const EDITALAMAT = _Paths.EDITALAMAT;
+  static const TAMBAHALAMAT = _Paths.TAMBAHALAMAT;
+  static const CARIALAMAT = _Paths.CARIALAMAT;
+  static const SETLOKASI = _Paths.SETLOKASI;
 }
 
 abstract class _Paths {
@@ -29,4 +33,8 @@ abstract class _Paths {
   static const EMAIL = '/email';
   static const EDITPIN = '/editpin';
   static const EDITEMAIL = '/editemail';
+  static const EDITALAMAT = '/editalamat';
+  static const TAMBAHALAMAT = '/tambahalamat';
+  static const CARIALAMAT = '/carialamat';
+  static const SETLOKASI = '/setlokasi';
 }

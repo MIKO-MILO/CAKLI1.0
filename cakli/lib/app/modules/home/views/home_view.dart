@@ -2,6 +2,7 @@ import 'package:cakli/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:http/http.dart' as http;
+import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:get/get.dart';
 
@@ -91,7 +92,7 @@ class HomeView extends GetView<HomeController> {
                   left: MediaQuery.of(context).size.width * 0.80,
                   bottom: MediaQuery.of(context).size.height * 0.47,
                   child: GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Get.toNamed(Routes.SETTING);
                     },
                     child: Image.asset(
@@ -99,9 +100,9 @@ class HomeView extends GetView<HomeController> {
                       width: 100,
                       height: 100,
                     ),
-                  )
+                  ),
                 ),
-                
+
                 Positioned(
                   top: 200,
                   left: 0,
@@ -190,109 +191,28 @@ class HomeView extends GetView<HomeController> {
                         // SEARCH BOX
                         InkWell(
                           onTap: () {
-                            showModalBottomSheet(
-                              context: context,
-                              isScrollControlled: true,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(16),
-                                ),
-                              ),
-                              builder: (ctx) {
-                                final textCtrl = TextEditingController(
-                                  text: controller.searchQuery.value,
-                                );
-                                return Padding(
-                                  padding: EdgeInsets.only(
-                                    bottom:
-                                        MediaQuery.of(ctx).viewInsets.bottom,
-                                  ),
-                                  child: SafeArea(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(16),
-                                          child: TextField(
-                                            controller: textCtrl,
-                                            autofocus: true,
-                                            decoration: InputDecoration(
-                                              hintText: 'Cari lokasi...',
-                                              filled: true,
-                                              fillColor: Colors.grey.shade200,
-                                              border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(12),
-                                                borderSide: BorderSide.none,
-                                              ),
-                                              prefixIcon:
-                                                  const Icon(Icons.search),
-                                            ),
-                                            onChanged: controller.searchPlaces,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height:
-                                              MediaQuery.of(ctx).size.height *
-                                              0.5,
-                                          child: Obx(
-                                            () => ListView.separated(
-                                              padding: EdgeInsets.zero,
-                                              itemCount: controller
-                                                  .searchResults.length,
-                                              separatorBuilder:
-                                                  (context, index) => Divider(
-                                                height: 1,
-                                                color: Colors.grey.shade300,
-                                              ),
-                                              itemBuilder: (context, index) {
-                                                final item = controller
-                                                    .searchResults[index];
-                                                return ListTile(
-                                                  leading: const Icon(
-                                                      Icons.place_outlined),
-                                                  title: Text(
-                                                    item['title']
-                                                            ?.toString() ??
-                                                        '',
-                                                    maxLines: 2,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                  onTap: () {
-                                                    controller
-                                                        .selectPlace(item);
-                                                    Navigator.pop(ctx);
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
+                            Get.toNamed(
+                              Routes.SETLOKASI,
+                            ); // atau Get.to(PageTujuan());
                           },
                           borderRadius: BorderRadius.circular(30),
                           child: Container(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 15),
-                            height: 55,
+                            height: 56,
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
                             decoration: BoxDecoration(
-                              color: Colors.grey.shade300,
+                              color: Colors.grey[100],
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Row(
-                              children: const [
-                                CircleAvatar(
-                                  radius: 11,
-                                  backgroundColor: Colors.orange,
+                              children: [
+                                const Icon(
+                                  Symbols.circle_circle,
+                                  fill: 1,
+                                  color: Color(0xFFF36200),
                                 ),
-                                SizedBox(width: 15),
-                                Expanded(
+                                const SizedBox(width: 12),
+
+                                const Expanded(
                                   child: Text(
                                     "Cari lokasi tujuan",
                                     style: TextStyle(
@@ -301,7 +221,8 @@ class HomeView extends GetView<HomeController> {
                                     ),
                                   ),
                                 ),
-                                Icon(Icons.search, color: Colors.grey),
+
+                                const Icon(Symbols.search),
                               ],
                             ),
                           ),
@@ -364,10 +285,8 @@ class HomeView extends GetView<HomeController> {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: controller.locations.length,
-                    separatorBuilder: (_, index) => Divider(
-                      height: 20,
-                      color: Colors.grey.shade400,
-                    ),
+                    separatorBuilder: (_, index) =>
+                        Divider(height: 20, color: Colors.grey.shade400),
                     itemBuilder: (context, index) {
                       final item = controller.locations[index];
                       return Padding(
