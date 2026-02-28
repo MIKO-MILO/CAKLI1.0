@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:get/get.dart';
 import 'package:cakli/app/routes/app_pages.dart';

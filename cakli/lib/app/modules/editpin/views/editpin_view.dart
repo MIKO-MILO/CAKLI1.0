@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cakli/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
-import '../controllers/editpin_controller.dart';
 
 class EditpinView extends StatefulWidget {
   const EditpinView({super.key});

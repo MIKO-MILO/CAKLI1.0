@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class SetlokasiController extends GetxController {
-  //TODO: Implement SetlokasiController
+class AktivitasController extends GetxController {
+  //TODO: Implement AktivitasController
 
   final count = 0.obs;
 

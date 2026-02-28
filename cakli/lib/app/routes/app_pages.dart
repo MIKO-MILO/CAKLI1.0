@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/aktivitas/bindings/aktivitas_binding.dart';
+import '../modules/aktivitas/views/aktivitas_view.dart';
 import '../modules/carialamat/bindings/carialamat_binding.dart';
 import '../modules/carialamat/views/carialamat_view.dart';
 import '../modules/editalamat/bindings/editalamat_binding.dart';
@@ -14,6 +16,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/maptest/bindings/maptest_binding.dart';
 import '../modules/maptest/views/maptest_view.dart';
+import '../modules/pesan/bindings/pesan_binding.dart';
+import '../modules/pesan/views/pesan_view.dart';
 import '../modules/setlokasi/bindings/setlokasi_binding.dart';
 import '../modules/setlokasi/views/setlokasi_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
@@ -86,6 +90,16 @@ class AppPages {
       name: _Paths.SETLOKASI,
       page: () => const SetlokasiView(),
       binding: SetlokasiBinding(),
+    ),
+    GetPage(
+      name: _Paths.AKTIVITAS,
+      page: () => const AktivitasView(),
+      binding: AktivitasBinding(),
+    ),
+    GetPage(
+      name: _Paths.PESAN,
+      page: () => const PesanView(),
+      binding: PesanBinding(),
     ),
   ];
 }

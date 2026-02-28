@@ -134,7 +134,7 @@ class SettingView extends GetView<SettingController> {
                           leading: const Icon(Symbols.history, fill: 1, weight: 900),
                           title: const Text('Riwayat'),
                           onTap: () {
-                            // Aksi saat menu Privasi ditekan
+                            Get.toNamed(Routes.AKTIVITAS);
                           },
                         ),
 

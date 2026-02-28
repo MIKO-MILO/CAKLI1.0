@@ -18,6 +18,8 @@ abstract class Routes {
   static const TAMBAHALAMAT = _Paths.TAMBAHALAMAT;
   static const CARIALAMAT = _Paths.CARIALAMAT;
   static const SETLOKASI = _Paths.SETLOKASI;
+  static const AKTIVITAS = _Paths.AKTIVITAS;
+  static const PESAN = _Paths.PESAN;
 }
 
 abstract class _Paths {
@@ -37,4 +39,6 @@ abstract class _Paths {
   static const TAMBAHALAMAT = '/tambahalamat';
   static const CARIALAMAT = '/carialamat';
   static const SETLOKASI = '/setlokasi';
+  static const AKTIVITAS = '/aktivitas';
+  static const PESAN = '/pesan';
 }
