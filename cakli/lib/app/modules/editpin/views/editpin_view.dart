@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cakli/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
-
 class EditpinView extends StatefulWidget {
   const EditpinView({super.key});
 
@@ -13,6 +12,7 @@ class EditpinView extends StatefulWidget {
 class _EditpinViewState extends State<EditpinView> {
   final TextEditingController _controller = TextEditingController();
   final int pinLength = 6;
+  final FocusNode _focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -49,61 +49,65 @@ class _EditpinViewState extends State<EditpinView> {
               ),
             ),
 
-          const SizedBox(height: 30),
+            const SizedBox(height: 30),
 
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 30),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                    blurRadius: 10,
-                    color: Colors.black12,
-                    offset: Offset(0, 5),
-                  ),
-                ],
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  /// PIN CIRCLE
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: List.generate(pinLength, (index) {
-                      bool isFilled = index < _controller.text.length;
-                      return Container(
-                        width: 18,
-                        height: 18,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.grey),
-                          color: isFilled ? Colors.black : Colors.transparent,
-                        ),
-                      );
-                    }),
-                  ),
-
-                  /// Hidden TextField
-                  Offstage(
-                    offstage: true,
-                    child: TextField(
-                      controller: _controller,
-                      keyboardType: TextInputType.number,
-                      maxLength: pinLength,
-                      buildCounter:
-                          (
-                            context, {
-                            required currentLength,
-                            required isFocused,
-                            maxLength,
-                          }) => null,
-                      onChanged: (value) {
-                        setState(() {});
-                      },
+            GestureDetector(
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 30),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: const [
+                    BoxShadow(
+                      blurRadius: 10,
+                      color: Colors.black12,
+                      offset: Offset(0, 5),
                     ),
-                  ),
-                ],
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    /// PIN CIRCLE
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: List.generate(pinLength, (index) {
+                        bool isFilled = index < _controller.text.length;
+                        return Container(
+                          width: 18,
+                          height: 18,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.grey),
+                            color: isFilled ? Colors.black : Colors.transparent,
+                          ),
+                        );
+                      }),
+                    ),
+
+                    /// Hidden TextField
+                    Offstage(
+                      offstage: true,
+                      child: TextField(
+                        focusNode: _focusNode,
+                        controller: _controller,
+                        keyboardType: TextInputType.number,
+                        maxLength: pinLength,
+                        autofocus: true,
+                        buildCounter:
+                            (
+                              context, {
+                              required currentLength,
+                              required isFocused,
+                              maxLength,
+                            }) => null,
+                        onChanged: (value) {
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
 

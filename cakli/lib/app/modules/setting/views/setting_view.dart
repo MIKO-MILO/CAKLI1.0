@@ -62,7 +62,7 @@ class SettingView extends GetView<SettingController> {
                             Text('0821345678'),
                           ],
                         ),
-                        const SizedBox(width: 50),
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.1),
                         GestureDetector(
                           onTap: () {
                             Get.toNamed(Routes.EDITPROFILE);

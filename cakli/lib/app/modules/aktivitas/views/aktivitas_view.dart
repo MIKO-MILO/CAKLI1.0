@@ -112,8 +112,8 @@ class RiwayatCard extends StatelessWidget {
         children: [
           /// IMAGE
           Container(
-            width: 80,
-            height: 80,
+            width: MediaQuery.of(context).size.width * 0.2,
+            height: MediaQuery.of(context).size.width * 0.2,
             decoration: BoxDecoration(
               color: const Color(0xFFFFDAC7),
               borderRadius: BorderRadius.circular(20),
@@ -121,7 +121,7 @@ class RiwayatCard extends StatelessWidget {
             child: Image.asset('assets/images/aktivitas/becak.png'),
           ),
 
-          const SizedBox(width: 15),
+          SizedBox(width: MediaQuery.of(context).size.width * 0.05),
 
           /// RIGHT SIDE
           Expanded(
@@ -139,7 +139,7 @@ class RiwayatCard extends StatelessWidget {
                       ),
                     ),
 
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.07),
+                    SizedBox(width: MediaQuery.of(context).size.width * 0.046),
 
                     Text(
                       harga,
@@ -189,8 +189,9 @@ class RiwayatCard extends StatelessWidget {
                         },
 
                         child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 17,
+                          padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.04,
                             vertical: 7,
                           ),
                           decoration: BoxDecoration(
@@ -201,6 +202,7 @@ class RiwayatCard extends StatelessWidget {
                             rating ? "Ulasan" : "Mau Lagi",
                             style: TextStyle(
                               color: Colors.white,
+                              fontSize: 12,
                               fontWeight: FontWeight.w500,
                             ),
                           ),

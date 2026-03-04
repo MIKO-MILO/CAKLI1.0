@@ -23,7 +23,7 @@ class RatingView extends GetView<RatingController> {
               children: [
                 Text(
                   "Rangkuman Transaksi",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                 ),
                 Text("Anda sudah sampai!", style: TextStyle(fontSize: 14)),
               ],
@@ -43,7 +43,7 @@ class RatingView extends GetView<RatingController> {
           ],
         ),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(20),
           child: Column(
