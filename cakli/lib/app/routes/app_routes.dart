@@ -20,6 +20,10 @@ abstract class Routes {
   static const SETLOKASI = _Paths.SETLOKASI;
   static const AKTIVITAS = _Paths.AKTIVITAS;
   static const PESAN = _Paths.PESAN;
+  static const PESANALAMAT = _Paths.PESANALAMAT;
+  static const CHAT = _Paths.CHAT;
+  static const PESANDRIVER = _Paths.PESANDRIVER;
+  static const RATING = _Paths.RATING;
 }
 
 abstract class _Paths {
@@ -41,4 +45,8 @@ abstract class _Paths {
   static const SETLOKASI = '/setlokasi';
   static const AKTIVITAS = '/aktivitas';
   static const PESAN = '/pesan';
+  static const PESANALAMAT = '/pesanalamat';
+  static const CHAT = '/chat';
+  static const PESANDRIVER = '/pesandriver';
+  static const RATING = '/rating';
 }

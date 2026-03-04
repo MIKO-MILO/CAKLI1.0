@@ -4,6 +4,8 @@ import '../modules/aktivitas/bindings/aktivitas_binding.dart';
 import '../modules/aktivitas/views/aktivitas_view.dart';
 import '../modules/carialamat/bindings/carialamat_binding.dart';
 import '../modules/carialamat/views/carialamat_view.dart';
+import '../modules/chat/bindings/chat_binding.dart';
+import '../modules/chat/views/chat_view.dart';
 import '../modules/editalamat/bindings/editalamat_binding.dart';
 import '../modules/editalamat/views/editalamat_view.dart';
 import '../modules/editemail/bindings/editemail_binding.dart';
@@ -18,6 +20,12 @@ import '../modules/maptest/bindings/maptest_binding.dart';
 import '../modules/maptest/views/maptest_view.dart';
 import '../modules/pesan/bindings/pesan_binding.dart';
 import '../modules/pesan/views/pesan_view.dart';
+import '../modules/pesanalamat/bindings/pesanalamat_binding.dart';
+import '../modules/pesanalamat/views/pesanalamat_view.dart';
+import '../modules/pesandriver/bindings/pesandriver_binding.dart';
+import '../modules/pesandriver/views/pesandriver_view.dart';
+import '../modules/rating/bindings/rating_binding.dart';
+import '../modules/rating/views/rating_view.dart';
 import '../modules/setlokasi/bindings/setlokasi_binding.dart';
 import '../modules/setlokasi/views/setlokasi_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
@@ -100,6 +108,26 @@ class AppPages {
       name: _Paths.PESAN,
       page: () => const PesanView(),
       binding: PesanBinding(),
+    ),
+    GetPage(
+      name: _Paths.PESANALAMAT,
+      page: () => const PesanalamatView(),
+      binding: PesanalamatBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHAT,
+      page: () => const ChatView(),
+      binding: ChatBinding(),
+    ),
+    GetPage(
+      name: _Paths.PESANDRIVER,
+      page: () => const PesandriverView(),
+      binding: PesandriverBinding(),
+    ),
+    GetPage(
+      name: _Paths.RATING,
+      page: () => const RatingView(),
+      binding: RatingBinding(),
     ),
   ];
 }

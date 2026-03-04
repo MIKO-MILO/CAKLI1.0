@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class PesanController extends GetxController {
-  //TODO: Implement PesanController
+class ChatController extends GetxController {
+  //TODO: Implement ChatController
 
   final count = 0.obs;
 

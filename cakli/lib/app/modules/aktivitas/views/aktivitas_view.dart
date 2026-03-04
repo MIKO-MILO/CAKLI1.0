@@ -49,6 +49,7 @@ class AktivitasView extends GetView<AktivitasController> {
                           lokasi: "SMKN 4 Malang",
                           harga: "Rp. 16.000",
                           selesai: true,
+                          rating: true,
                         ),
 
                         RiwayatCard(
@@ -56,6 +57,7 @@ class AktivitasView extends GetView<AktivitasController> {
                           lokasi: "SMKN 4 Malang",
                           harga: "Rp. 16.000",
                           selesai: false,
+                          rating: true,
                         ),
 
                         RiwayatCard(
@@ -63,6 +65,7 @@ class AktivitasView extends GetView<AktivitasController> {
                           lokasi: "SMKN 4 Malang",
                           harga: "Rp. 16.000",
                           selesai: true,
+                          rating: false,
                         ),
                       ],
                     ),
@@ -85,6 +88,7 @@ class RiwayatCard extends StatelessWidget {
   final String tanggal;
   final String harga;
   final bool selesai;
+  final bool rating;
 
   const RiwayatCard({
     super.key,
@@ -92,6 +96,7 @@ class RiwayatCard extends StatelessWidget {
     required this.tanggal,
     required this.harga,
     required this.selesai,
+    required this.rating,
   });
 
   @override
@@ -176,20 +181,28 @@ class RiwayatCard extends StatelessWidget {
                     ),
 
                     if (selesai)
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 17,
-                          vertical: 7,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFE04D04),
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child: const Text(
-                          "Mau Lagi",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
+                      GestureDetector(
+                        onTap: () {
+                          rating
+                              ? Get.toNamed('/rating')
+                              : Get.toNamed('/setlokasi');
+                        },
+
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 17,
+                            vertical: 7,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFE04D04),
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          child: Text(
+                            rating ? "Ulasan" : "Mau Lagi",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),

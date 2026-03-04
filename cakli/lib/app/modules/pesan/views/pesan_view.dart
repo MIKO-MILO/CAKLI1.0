@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cakli/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
@@ -217,60 +218,155 @@ class _BottomActionBar extends StatelessWidget {
           /// Payment + Voucher
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [_SmallButton("GoPay"), _SmallButton("Voucher")],
+            children: [
+              /// CaPay Button
+              GestureDetector(
+                onTap: () {},
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFE45A1F),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.account_balance_wallet,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
+
+                    const SizedBox(width: 12),
+
+                    const Text(
+                      "CaPay",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+
+                    const SizedBox(width: 6),
+
+                    const Icon(Icons.chevron_right, color: Colors.grey),
+                  ],
+                ),
+              ),
+
+              /// Voucher Button
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(color: Colors.grey.shade400),
+                  ),
+                  child: Row(
+                    children: [
+
+                      Container(
+                        width: 24,
+                        height: 24,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFE45A1F),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.percent,
+                          size: 18,
+                          color: Colors.white,
+                        ),
+                      ),
+
+                      SizedBox(width: 8),
+
+                      Text(
+                        "Voucher",
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
 
           const SizedBox(height: 16),
 
           /// Order Button
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 14),
-            decoration: BoxDecoration(
-              color: const Color(0xFFE45A1F),
-              borderRadius: BorderRadius.circular(24),
-            ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(width: 16),
-                Text(
-                  "Cari driver",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+          /// Order Button
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(40),
+              onTap: () {
+                Get.toNamed(Routes.PESANDRIVER);
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 16,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(right: 16),
-                  child: Text(
-                    "Rp10.000",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFE45A1F),
+                  borderRadius: BorderRadius.circular(40), // lebih pill
                 ),
-              ],
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    /// TEXT KIRI
+                    const Text(
+                      "Cari driver",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+
+                    /// PRICE + ICON
+                    Row(
+                      children: [
+                        const Text(
+                          "Rp10.000",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                          ),
+                        ),
+
+                        const SizedBox(width: 10),
+
+                        Container(
+                          width: 28,
+                          height: 28,
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.arrow_forward,
+                            size: 16,
+                            color: Color(0xFFE45A1F),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class _SmallButton extends StatelessWidget {
-  final String title;
-
-  const _SmallButton(this.title);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.grey[200],
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
     );
   }
 }

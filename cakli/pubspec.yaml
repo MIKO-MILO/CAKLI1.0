@@ -31,6 +31,7 @@ dependencies:
   material_symbols_icons: ^4.0.0
   flutter_svg: ^2.0.10
   flutter_native_splash: ^2.4.7
+  flutter_rating_bar: ^4.0.0
   flutter:
     sdk: flutter
 
@@ -103,6 +104,8 @@ flutter:
     - assets/images/editemail/
     - assets/images/editpin/
     - assets/images/aktivitas/
+    - assets/images/pesandriver/
+    - assets/images/rating/
 
     
 

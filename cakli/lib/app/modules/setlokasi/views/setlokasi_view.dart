@@ -71,7 +71,7 @@ class SetlokasiView extends GetView<SetlokasiController> {
                   address: "Jl. Tanimbar No. 22, Kasin, Klojen, Malang",
                   highlight: true,
                   onTap: () {
-                    Get.toNamed(Routes.PESAN);
+                    Get.toNamed(Routes.PESANALAMAT);
                   },
                 ),
                 LocationOption(
@@ -79,7 +79,7 @@ class SetlokasiView extends GetView<SetlokasiController> {
                   subtitle: "Kamu pernah di sini",
                   icon: Icons.refresh,
                   onTap: () {
-                    Get.toNamed(Routes.PESAN);
+                    Get.toNamed(Routes.PESANALAMAT);
                   },
                 ),
                 LocationOption(
@@ -87,7 +87,7 @@ class SetlokasiView extends GetView<SetlokasiController> {
                   subtitle: "Paling dekat",
                   icon: Icons.location_on,
                   onTap: () {
-                    Get.toNamed(Routes.PESAN);
+                    Get.toNamed(Routes.PESANALAMAT);
                   },
                 ),
                 const Divider(thickness: 1, height: 0),
@@ -96,7 +96,7 @@ class SetlokasiView extends GetView<SetlokasiController> {
                   address: "Jl. Teluk Pacitan, Arjosari, Blimbing",
                   highlight: false,
                   onTap: () {
-                    Get.toNamed(Routes.PESAN);
+                    Get.toNamed(Routes.PESANALAMAT);
                   },
                 ),
                 const Divider(thickness: 1, height: 0),

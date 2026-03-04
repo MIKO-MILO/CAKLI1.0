@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class PesanController extends GetxController {
-  //TODO: Implement PesanController
+class PesandriverController extends GetxController {
+  //TODO: Implement PesandriverController
 
   final count = 0.obs;
 
