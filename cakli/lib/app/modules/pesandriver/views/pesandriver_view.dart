@@ -463,17 +463,4 @@ class PesandriverView extends StatelessWidget {
       ),
     );
   }
-
-  /// reusable icon circle
-  Widget _circleIcon(IconData icon) {
-    return Container(
-      height: 50,
-      width: 50,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: const Color(0xFFD46A2E)),
-      ),
-      child: Icon(icon, color: const Color(0xFFD46A2E), fill: 1),
-    );
-  }
 }

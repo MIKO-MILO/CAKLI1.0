@@ -4,6 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cakli/app/routes/app_pages.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:get/get.dart';
 
@@ -33,40 +34,37 @@ class PesanView extends GetView<PesanController> {
         children: [
           /// 1️⃣ MAP BACKGROUND
           Positioned.fill(
-            child: Container(
-              child: FlutterMap(
-                options: MapOptions(
-                  initialCenter: LatLng(-7.9553, 112.6280),
-                  initialZoom: 9.2,
-                ),
-                children: [
-                  TileLayer(
-                    urlTemplate:
-                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName: 'com.cakli.app',
-                    tileProvider: NetworkTileProvider(
-                      httpClient: _HeaderedClient({
-                        'User-Agent': 'com.cakli.app/1.0',
-                      }),
-                    ),
-                  ),
-                  RichAttributionWidget(
-                    attributions: [
-                      TextSourceAttribution(
-                        'OpenStreetMap contributors',
-                        onTap: () async {
-                          final url = Uri.parse(
-                            'https://openstreetmap.org/copyright',
-                          );
-                          if (!await launchUrl(url)) {
-                            throw Exception('Could not launch $url');
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                ],
+            child: FlutterMap(
+              options: MapOptions(
+                initialCenter: LatLng(-7.9553, 112.6280),
+                initialZoom: 9.2,
               ),
+              children: [
+                TileLayer(
+                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                  userAgentPackageName: 'com.cakli.app',
+                  tileProvider: NetworkTileProvider(
+                    httpClient: _HeaderedClient({
+                      'User-Agent': 'com.cakli.app/1.0',
+                    }),
+                  ),
+                ),
+                RichAttributionWidget(
+                  attributions: [
+                    TextSourceAttribution(
+                      'OpenStreetMap contributors',
+                      onTap: () async {
+                        final url = Uri.parse(
+                          'https://openstreetmap.org/copyright',
+                        );
+                        if (!await launchUrl(url)) {
+                          throw Exception('Could not launch $url');
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
 
@@ -221,7 +219,13 @@ class _BottomActionBar extends StatelessWidget {
             children: [
               /// CaPay Button
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) => const Payment(),
+                  );
+                },
                 child: Row(
                   children: [
                     Container(
@@ -257,7 +261,9 @@ class _BottomActionBar extends StatelessWidget {
 
               /// Voucher Button
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(Routes.VOUCHER);
+                },
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 14,
@@ -269,7 +275,6 @@ class _BottomActionBar extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-
                       Container(
                         width: 24,
                         height: 24,
@@ -366,6 +371,225 @@ class _BottomActionBar extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class Payment extends StatefulWidget {
+  const Payment({super.key});
+
+  @override
+  State<Payment> createState() => _PaymentState();
+}
+
+class _PaymentState extends State<Payment> {
+  int groupValue = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    return DraggableScrollableSheet(
+      initialChildSize: 0.43,
+      minChildSize: 0.4,
+      maxChildSize: 0.43,
+      expand: false,
+      builder: (context, scrollController) {
+        return Container(
+          padding: const EdgeInsets.all(20),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+          child: ListView(
+            controller: scrollController,
+            children: [
+              // garis atas
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  margin: const EdgeInsets.only(bottom: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[400],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+
+              const Text(
+                "Metode Pembayaran",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+
+              const SizedBox(height: 20),
+
+              // ITEM 1
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+
+                leading: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFD75A1A),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.account_balance_wallet,
+                    color: Colors.white,
+                  ),
+                ),
+
+                title: const Text(
+                  "Capay",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+
+                subtitle: const Text("Saldo: Rp 50.000"),
+
+                trailing: CustomRadio(
+                  selected: groupValue == 1,
+                  onTap: () {
+                    setState(() {
+                      groupValue = 1;
+                    });
+                  },
+                ),
+
+                onTap: () {
+                  setState(() {
+                    groupValue = 1;
+                  });
+                },
+              ),
+
+              const SizedBox(height: 10),
+
+              // ITEM 2
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+
+                leading: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFD75A1A),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Symbols.money_bag,
+                    color: Colors.white,
+                    fill: 1,
+                  ),
+                ),
+
+                title: const Text(
+                  "Cash",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+
+                subtitle: const Text("Gunakan Uang Tunai"),
+
+                trailing: CustomRadio(
+                  selected: groupValue == 2,
+                  onTap: () {
+                    setState(() {
+                      groupValue = 2;
+                    });
+                  },
+                ),
+
+                onTap: () {
+                  setState(() {
+                    groupValue = 1;
+                  });
+                },
+              ),
+
+              const SizedBox(height: 10),
+
+              // ITEM 3
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+
+                leading: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFD75A1A),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Image.asset(
+                    "assets/images/qris.png",
+                    width: 24,
+                    height: 24,
+                  ),
+                ),
+
+                title: const Text(
+                  "Qris",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+
+                subtitle: const Text("Scar QR Qris Pada Driver"),
+
+                trailing: CustomRadio(
+                  selected: groupValue == 3,
+                  onTap: () {
+                    setState(() {
+                      groupValue = 3;
+                    });
+                  },
+                ),
+
+                onTap: () {
+                  setState(() {
+                    groupValue = 3;
+                  });
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class CustomRadio extends StatelessWidget {
+  final bool selected;
+  final VoidCallback onTap;
+
+  const CustomRadio({super.key, required this.selected, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: GestureDetector(
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          width: 24,
+          height: 24,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: const Color(0xFFD75A1A), width: 2),
+          ),
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            child: selected
+                ? Center(
+                    child: Container(
+                      key: const ValueKey("dot"),
+                      width: 12,
+                      height: 12,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xFFD75A1A),
+                      ),
+                    ),
+                  )
+                : const SizedBox(),
+          ),
+        ),
       ),
     );
   }

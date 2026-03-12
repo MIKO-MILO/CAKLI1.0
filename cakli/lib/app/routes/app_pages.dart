@@ -34,6 +34,8 @@ import '../modules/splashscreen/bindings/splashscreen_binding.dart';
 import '../modules/splashscreen/views/splashscreen_view.dart';
 import '../modules/tambahalamat/bindings/tambahalamat_binding.dart';
 import '../modules/tambahalamat/views/tambahalamat_view.dart';
+import '../modules/voucher/bindings/voucher_binding.dart';
+import '../modules/voucher/views/voucher_view.dart';
 
 part 'app_routes.dart';
 
@@ -128,6 +130,11 @@ class AppPages {
       name: _Paths.RATING,
       page: () => const RatingView(),
       binding: RatingBinding(),
+    ),
+    GetPage(
+      name: _Paths.VOUCHER,
+      page: () => const VoucherView(),
+      binding: VoucherBinding(),
     ),
   ];
 }

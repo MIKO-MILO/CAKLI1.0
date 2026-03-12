@@ -34,40 +34,38 @@ class PesandriverView extends GetView<PesandriverController> {
         children: [
           /// 1️⃣ MAP BACKGROUND
           Positioned.fill(
-            child: Container(
-              child: FlutterMap(
-                options: MapOptions(
-                  initialCenter: LatLng(-7.9553, 112.6280),
-                  initialZoom: 9.2,
-                ),
-                children: [
-                  TileLayer(
-                    urlTemplate:
-                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName: 'com.cakli.app',
-                    tileProvider: NetworkTileProvider(
-                      httpClient: _HeaderedClient({
-                        'User-Agent': 'com.cakli.app/1.0',
-                      }),
-                    ),
-                  ),
-                  RichAttributionWidget(
-                    attributions: [
-                      TextSourceAttribution(
-                        'OpenStreetMap contributors',
-                        onTap: () async {
-                          final url = Uri.parse(
-                            'https://openstreetmap.org/copyright',
-                          );
-                          if (!await launchUrl(url)) {
-                            throw Exception('Could not launch $url');
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                ],
+            child: FlutterMap(
+              options: MapOptions(
+                initialCenter: LatLng(-7.9553, 112.6280),
+                initialZoom: 9.2,
               ),
+              children: [
+                TileLayer(
+                  urlTemplate:
+                      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                  userAgentPackageName: 'com.cakli.app',
+                  tileProvider: NetworkTileProvider(
+                    httpClient: _HeaderedClient({
+                      'User-Agent': 'com.cakli.app/1.0',
+                    }),
+                  ),
+                ),
+                RichAttributionWidget(
+                  attributions: [
+                    TextSourceAttribution(
+                      'OpenStreetMap contributors',
+                      onTap: () async {
+                        final url = Uri.parse(
+                          'https://openstreetmap.org/copyright',
+                        );
+                        if (!await launchUrl(url)) {
+                          throw Exception('Could not launch $url');
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
 
