@@ -226,8 +226,8 @@ void showStatusModal(BuildContext context) {
     barrierLabel: 'status_modal',
     barrierColor: Colors.transparent, // Map tetap terlihat
     transitionDuration: const Duration(milliseconds: 300),
-    pageBuilder: (_, __, ___) => const StatusModal(),
-    transitionBuilder: (_, animation, __, child) {
+    pageBuilder: (_, _, _) => const StatusModal(),
+    transitionBuilder: (_, animation, _, child) {
       return SlideTransition(
         position: Tween<Offset>(
           begin: const Offset(0, 0.15),
@@ -386,7 +386,7 @@ class _StatusModalState extends State<StatusModal> {
                         Switch(
                           value: _autoBid,
                           onChanged: (v) => setState(() => _autoBid = v),
-                          activeColor: _orange,
+                          activeThumbColor: _orange,
                         ),
                       ],
                     ),
