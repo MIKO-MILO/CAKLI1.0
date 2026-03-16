@@ -1,3 +1,4 @@
+import 'package:cakli_driver/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -49,7 +50,12 @@ class HomeView extends GetView<HomeController> {
               ],
             ),
           ),
-          Positioned(top: 50, left: 0, right: 0, child: Header()),
+          Positioned(
+            top: MediaQuery.of(context).padding.top,
+            left: 0,
+            right: 0,
+            child: Header(),
+          ),
 
           // Navigation
           Positioned(bottom: 20, left: 0, right: 0, child: Navigation()),
@@ -154,9 +160,18 @@ class Navigation extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: const [
-          NavItem(icon: Icons.home, label: "Beranda", active: true),
-          NavItem(icon: Icons.account_balance_wallet, label: "Pendapatan"),
-          NavItem(icon: Icons.mail, label: "Pesan"),
+          NavItem(
+            icon: Icons.home,
+            label: "Beranda",
+            active: true,
+            route: Routes.HOME,
+          ),
+          NavItem(
+            icon: Icons.account_balance_wallet,
+            label: "Pendapatan",
+            route: Routes.RIWAYAT,
+          ),
+          NavItem(icon: Icons.mail, label: "Pesan", route: Routes.ORDER),
         ],
       ),
     );
@@ -167,12 +182,14 @@ class NavItem extends StatelessWidget {
   final IconData icon;
   final String label;
   final bool active;
+  final String route;
 
   const NavItem({
     super.key,
     required this.icon,
     required this.label,
     this.active = false,
+    required this.route,
   });
 
   @override
@@ -180,51 +197,58 @@ class NavItem extends StatelessWidget {
     const activeColor = Color(0xFFE04D04);
     const inactiveColor = Color(0xFFBDBDBD);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        // Top indicator bar
-        Container(
-          width: 50,
-          height: 5,
-          decoration: BoxDecoration(
-            color: active ? activeColor : Colors.transparent,
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
-            boxShadow: context.isDarkMode
-                ? active
-                      ? null
-                      : [
-                          BoxShadow(
-                            color: Colors.deepOrange,
-                            blurRadius: 15,
-                            offset: const Offset(10, 10),
-                          ),
-                        ]
-                : null,
+    return GestureDetector(
+      onTap: () => route.toNamed(route),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Top indicator bar
+          Container(
+            width: 50,
+            height: 5,
+            decoration: BoxDecoration(
+              color: active ? activeColor : Colors.transparent,
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
+              boxShadow: context.isDarkMode
+                  ? active
+                        ? null
+                        : [
+                            BoxShadow(
+                              color: Colors.deepOrange,
+                              blurRadius: 15,
+                              offset: const Offset(10, 10),
+                            ),
+                          ]
+                  : null,
+            ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Icon(icon, color: active ? activeColor : inactiveColor, size: 28),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: TextStyle(
-            color: active ? activeColor : inactiveColor,
-            fontSize: 12,
-            fontWeight: active ? FontWeight.w600 : FontWeight.normal,
+          const SizedBox(height: 8),
+          Icon(icon, color: active ? activeColor : inactiveColor, size: 28),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(
+              color: active ? activeColor : inactiveColor,
+              fontSize: 12,
+              fontWeight: active ? FontWeight.w600 : FontWeight.normal,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
+}
+
+extension on String {
+  void toNamed(String get) => Get.toNamed(get);
 }
 
 void showStatusModal(BuildContext context) {
   showGeneralDialog(
     context: context,
-    barrierDismissible: true,
+    barrierDismissible: false,
     barrierLabel: 'status_modal',
-    barrierColor: Colors.transparent, // Map tetap terlihat
+    barrierColor: Colors.black.withOpacity(0.5), // Map tetap terlihat
     transitionDuration: const Duration(milliseconds: 300),
     pageBuilder: (_, _, _) => const StatusModal(),
     transitionBuilder: (_, animation, _, child) {
@@ -345,6 +369,7 @@ class _StatusModalState extends State<StatusModal> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           _StatItem(
                             label: 'Penerimaan bid',
@@ -440,29 +465,25 @@ class _StatItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(label, style: const TextStyle(fontSize: 11, color: Colors.grey)),
-          const SizedBox(height: 4),
-          Row(
-            children: [
-              Icon(icon, color: iconColor, size: 20),
-              const SizedBox(width: 4),
-              Text(
-                value,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(width: 4),
-              const Icon(Icons.info_outline, size: 14, color: Colors.grey),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: const TextStyle(fontSize: 11, color: Colors.grey)),
+        const SizedBox(height: 4),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: iconColor, size: 20),
+            const SizedBox(width: 4),
+            Text(
+              value,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(width: 4),
+            const Icon(Icons.info_outline, size: 14, color: Colors.grey),
+          ],
+        ),
+      ],
     );
   }
 }
