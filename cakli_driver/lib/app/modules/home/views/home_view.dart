@@ -102,9 +102,12 @@ class Header extends StatelessWidget {
                 ),
               ],
             ),
-            child: const CircleAvatar(
-              radius: 22,
-              backgroundImage: AssetImage('assets/images/home/profile.png'),
+            child: GestureDetector(
+              onTap: () => Get.toNamed(Routes.PROFIL),
+              child: CircleAvatar(
+                radius: 22,
+                backgroundImage: AssetImage('assets/images/home/profile.png'),
+              ),
             ),
           ),
 
@@ -169,9 +172,9 @@ class Navigation extends StatelessWidget {
           NavItem(
             icon: Icons.account_balance_wallet,
             label: "Pendapatan",
-            route: Routes.RIWAYAT,
+            route: Routes.PENDAPATAN,
           ),
-          NavItem(icon: Icons.mail, label: "Pesan", route: Routes.ORDER),
+          NavItem(icon: Icons.mail, label: "Pesan", route: Routes.LISTCHAT),
         ],
       ),
     );

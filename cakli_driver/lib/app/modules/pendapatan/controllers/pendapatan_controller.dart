@@ -4,20 +4,17 @@ class PendapatanController extends GetxController {
   //TODO: Implement PendapatanController
 
   final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void increment() => count.value++;
+
+  var selectedTab = 0.obs;
+
+  void changeTab(int index) {
+    selectedTab.value = index;
+  }
+
+  var saldo = 57800.obs;
+
+  String get formattedSaldo =>
+      "Rp ${saldo.value.toString().replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (match) => ".")}";
 }

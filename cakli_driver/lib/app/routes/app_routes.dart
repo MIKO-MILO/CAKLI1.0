@@ -8,6 +8,12 @@ abstract class Routes {
   static const PENDAPATAN = _Paths.PENDAPATAN;
   static const ORDER = _Paths.ORDER;
   static const RIWAYAT = _Paths.RIWAYAT;
+  static const TERIMAORDER = _Paths.TERIMAORDER;
+  static const ANTARORDER = _Paths.ANTARORDER;
+  static const PROFIL = _Paths.PROFIL;
+  static const PENGATURAN = _Paths.PENGATURAN;
+  static const CHAT = _Paths.CHAT;
+  static const LISTCHAT = _Paths.LISTCHAT;
 }
 
 abstract class _Paths {
@@ -17,4 +23,10 @@ abstract class _Paths {
   static const PENDAPATAN = '/pendapatan';
   static const ORDER = '/order';
   static const RIWAYAT = '/riwayat';
+  static const TERIMAORDER = '/terimaorder';
+  static const ANTARORDER = '/antarorder';
+  static const PROFIL = '/profil';
+  static const PENGATURAN = '/pengaturan';
+  static const CHAT = '/chat';
+  static const LISTCHAT = '/listchat';
 }
