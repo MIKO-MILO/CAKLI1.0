@@ -39,7 +39,7 @@ class ProfilView extends GetView<ProfilController> {
                 children: [
                   SizedBox(height: 55),
 
-                  driverSection(),
+                  DriverSection(),
                   SizedBox(height: 20),
 
                   TextMenuLainya(),
@@ -244,24 +244,41 @@ class _EditButton extends StatelessWidget {
   }
 }
 
-class driverSection extends StatelessWidget {
-  const driverSection({super.key});
+class DriverSection extends StatelessWidget {
+  const DriverSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [SaldoPoin(), DriverPoin()],
-        ),
-
-        SizedBox(height: 10),
-
-        RatingCustomer(),
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth < 400) {
+          // layar kecil
+          return Column(
+            children: [
+              SaldoPoin(),
+              SizedBox(height: 10),
+              DriverPoin(),
+              SizedBox(height: 10),
+              RatingCustomer(),
+            ],
+          );
+        } else {
+          // layar normal
+          return Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(child: SaldoPoin()),
+                  SizedBox(width: 10),
+                  Expanded(child: DriverPoin()),
+                ],
+              ),
+              SizedBox(height: 10),
+              RatingCustomer(),
+            ],
+          );
+        }
+      },
     );
   }
 }

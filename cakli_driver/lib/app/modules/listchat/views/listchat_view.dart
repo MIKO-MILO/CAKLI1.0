@@ -87,7 +87,7 @@ class ChatPage extends StatelessWidget {
     return Obx(
       () => ListView.separated(
         itemCount: controller.chats.length,
-        separatorBuilder: (_, __) => Divider(
+        separatorBuilder: (_, _) => Divider(
           color: Colors.orange.shade200,
           thickness: 1,
           indent: 16,

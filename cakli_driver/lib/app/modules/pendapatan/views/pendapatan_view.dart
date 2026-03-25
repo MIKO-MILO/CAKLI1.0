@@ -398,6 +398,8 @@ class WalletCard extends StatelessWidget {
 }
 
 class TextAddWallet extends StatelessWidget {
+  const TextAddWallet({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -416,6 +418,8 @@ class TextAddWallet extends StatelessWidget {
 }
 
 class AddWallet extends StatelessWidget {
+  const AddWallet({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Row(

@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:cakli_driver/app/modules/profil/views/profil_view.dart';
 import 'package:flutter/material.dart';
