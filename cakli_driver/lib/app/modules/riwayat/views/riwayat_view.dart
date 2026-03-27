@@ -100,7 +100,7 @@ class DateSelector extends StatelessWidget {
 
           /// DATE LIST
           SizedBox(
-            height: 70,
+            height: 80,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: dates.map((date) {
@@ -110,7 +110,7 @@ class DateSelector extends StatelessWidget {
                 bool isCurrentMonth = date.month == selected.month;
 
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  padding: const EdgeInsets.symmetric(horizontal: 17),
                   child: GestureDetector(
                     onTap: () {
                       controller.selectDate(date);

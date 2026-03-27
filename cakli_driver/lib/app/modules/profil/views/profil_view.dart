@@ -249,36 +249,18 @@ class DriverSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth < 400) {
-          // layar kecil
-          return Column(
-            children: [
-              SaldoPoin(),
-              SizedBox(height: 10),
-              DriverPoin(),
-              SizedBox(height: 10),
-              RatingCustomer(),
-            ],
-          );
-        } else {
-          // layar normal
-          return Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(child: SaldoPoin()),
-                  SizedBox(width: 10),
-                  Expanded(child: DriverPoin()),
-                ],
-              ),
-              SizedBox(height: 10),
-              RatingCustomer(),
-            ],
-          );
-        }
-      },
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(child: SaldoPoin()),
+            const SizedBox(width: 10),
+            Expanded(child: DriverPoin()),
+          ],
+        ),
+        const SizedBox(height: 10),
+        const RatingCustomer(),
+      ],
     );
   }
 }
@@ -289,7 +271,7 @@ class SaldoPoin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
         border: Border.all(color: const Color(0xFFB1B1B1), width: 1),
         color: Colors.white,
@@ -297,35 +279,38 @@ class SaldoPoin extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 20,
+          const CircleAvatar(
+            radius: 18,
             backgroundColor: Color(0xFFE04D04),
-            child: Icon(Symbols.attach_money, size: 24, color: Colors.white),
+            child: Icon(Icons.attach_money, size: 20, color: Colors.white),
           ),
           const SizedBox(width: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Saldo Poin',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Color(0xFFE04D04),
-                  height: 1.4,
-                  fontWeight: FontWeight.bold,
+
+          // 🔥 supaya tidak overflow
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  'Saldo Poin',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0xFFE04D04),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 1),
-              Text(
-                '10.000',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  letterSpacing: 0.2,
+                SizedBox(height: 2),
+                Text(
+                  '10.000',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
@@ -339,7 +324,7 @@ class DriverPoin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
         border: Border.all(color: const Color(0xFFB1B1B1), width: 1),
         color: Colors.white,
@@ -347,31 +332,34 @@ class DriverPoin extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset('assets/images/icon/poin.png', width: 35, height: 35),
+          Image.asset('assets/images/icon/poin.png', width: 30, height: 30),
           const SizedBox(width: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Poin Driver',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Color(0xFFE04D04),
-                  height: 1.4,
-                  fontWeight: FontWeight.bold,
+
+          // 🔥 supaya responsive & tidak overflow
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  'Poin Driver',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0xFFE04D04),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 1),
-              Text(
-                '10.000',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  letterSpacing: 0.2,
+                SizedBox(height: 2),
+                Text(
+                  '10.000',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
@@ -381,7 +369,6 @@ class DriverPoin extends StatelessWidget {
 
 class RatingCustomer extends StatelessWidget {
   const RatingCustomer({super.key});
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -415,7 +402,6 @@ class RatingCustomer extends StatelessWidget {
                 ),
               ],
             ),
-
             Icon(Symbols.arrow_forward_ios, size: 24, color: Colors.black),
           ],
         ),
