@@ -69,8 +69,15 @@ class HomeController extends GetxController {
   void selectPlace(Map<String, dynamic> place) {
     final lat = double.tryParse(place['lat'].toString()) ?? 0;
     final lon = double.tryParse(place['lon'].toString()) ?? 0;
-    center.value = LatLng(lat, lon);
-    final title = place['title']?.toString() ?? 'Lokasi';
-    locations.insert(0, {'title': title, 'subtitle': 'Hasil pencarian'});
+
+    // ✅ Validasi sebelum set ke map
+    if (lat.isFinite && lon.isFinite && lat != 0 && lon != 0) {
+      center.value = LatLng(lat, lon);
+
+      final title = place['title']?.toString() ?? 'Lokasi';
+      locations.insert(0, {'title': title, 'subtitle': 'Hasil pencarian'});
+    } else {
+      print("WARNING: Lokasi tidak valid: $place");
+    }
   }
 }

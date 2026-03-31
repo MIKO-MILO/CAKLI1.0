@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:get/get.dart';
-
-import '../controllers/home_controller.dart';
+import 'package:cakli/app/modules/home/controllers/home_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -14,17 +14,25 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFEBEBEB),
       body: Stack(
         children: [
           // ================= BACKGROUND IMAGE =================
           ImageHeader(),
+          Padding(
+            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top * 3.5),
+            child: TextHeader(),
+          ),
 
           // ================= KONTEN =================
           SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 200), // kasih ruang supaya gak ketiban header
-                TextHeader(),
+                SizedBox(height: 250), // kasih ruang supaya gak ketiban header
+                SizedBox(height: 20),
+                ContainerMap(),
+                SizedBox(height: 5),
+                ListLocation(),
               ],
             ),
           ),
@@ -111,23 +119,53 @@ class ContainerMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MapView();
+    return Container(
+      margin: EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.white,
+      ),
+      child: Column(
+        children: [
+          const MapView(),
+          const SizedBox(height: 20),
+          const SearchLocation(),
+          const SizedBox(height: 20),
+          const ActionButton(),
+        ],
+      ),
+    );
   }
 }
 
 class MapView extends GetView<HomeController> {
   const MapView({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.15,
-        child: Obx(() {
-          final c = controller.center.value;
-          return FlutterMap(
-            key: ValueKey('${c.latitude},${c.longitude}'),
-            options: MapOptions(initialCenter: c, initialZoom: 12.5),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Color(0xFFCFCFCF)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      height: MediaQuery.of(context).size.height * 0.15,
+      width: MediaQuery.of(context).size.width * 0.9,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Obx(
+          () => FlutterMap(
+            options: MapOptions(
+              initialCenter: controller.center.value,
+              initialZoom: 13.0,
+            ),
             children: [
               TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -138,30 +176,53 @@ class MapView extends GetView<HomeController> {
                   }),
                 ),
               ),
+              RichAttributionWidget(
+                attributions: [
+                  TextSourceAttribution(
+                    'OpenStreetMap contributors',
+                    onTap: () async {
+                      final url = Uri.parse(
+                        'https://openstreetmap.org/copyright',
+                      );
+                      if (!await launchUrl(url)) {
+                        throw Exception('Could not launch $url');
+                      }
+                    },
+                  ),
+                ],
+              ),
             ],
-          );
-        }),
+          ),
+        ),
       ),
     );
   }
 }
 
-class SeacrhLocation extends StatelessWidget {
-  const SeacrhLocation({super.key});
+class SearchLocation extends StatelessWidget {
+  const SearchLocation({super.key});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed(Routes.SETLOKASI); // atau Get.to(PageTujuan());
+        Get.toNamed(Routes.SETLOKASI);
       },
       borderRadius: BorderRadius.circular(30),
       child: Container(
         height: 56,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
-          color: Colors.grey[100],
+          color: Colors.white,
           borderRadius: BorderRadius.circular(30),
+          border: Border.all(color: Color(0xFFCFCFCF), width: 1),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         child: Row(
           children: [
@@ -171,14 +232,12 @@ class SeacrhLocation extends StatelessWidget {
               color: Color(0xFFF36200),
             ),
             const SizedBox(width: 12),
-
             const Expanded(
               child: Text(
                 "Cari lokasi tujuan",
                 style: TextStyle(color: Colors.grey, fontSize: 16),
               ),
             ),
-
             const Icon(Symbols.search),
           ],
         ),
@@ -193,8 +252,9 @@ class ListLocation extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
+        margin: const EdgeInsets.only(bottom: 30),
         padding: const EdgeInsets.symmetric(vertical: 0),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -258,7 +318,9 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [ActionButtonLeft(), ActionButtonRight()]);
+    return Row(
+      children: [ActionButtonLeft(), SizedBox(width: 20), ActionButtonRight()],
+    );
   }
 }
 
@@ -268,7 +330,7 @@ class ActionButtonLeft extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: _buildActionBox(
+      child: _BuildActionBox(
         text: "Simpan Rumah",
         asset: 'assets/images/icon/lokasi1.png',
         onTap: () {
@@ -285,7 +347,7 @@ class ActionButtonRight extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: _buildActionBox(
+      child: _BuildActionBox(
         text: "Simpan Kantor",
         asset: 'assets/images/icon/lokasi1.png',
         onTap: () {
@@ -296,8 +358,8 @@ class ActionButtonRight extends StatelessWidget {
   }
 }
 
-class _buildActionBox extends StatelessWidget {
-  const _buildActionBox({
+class _BuildActionBox extends StatelessWidget {
+  const _BuildActionBox({
     required this.text,
     required this.asset,
     required this.onTap,
@@ -321,7 +383,7 @@ class _buildActionBox extends StatelessWidget {
           border: Border.all(color: Colors.grey.shade300),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withOpacity(0.1),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -329,14 +391,14 @@ class _buildActionBox extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.asset(asset, width: 22, height: 22),
+            Image.asset(asset, width: 20, height: 20),
             const SizedBox(width: 10),
             Expanded(
               child: Text(
                 text,
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: 14,
+                  fontSize: 12,
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
