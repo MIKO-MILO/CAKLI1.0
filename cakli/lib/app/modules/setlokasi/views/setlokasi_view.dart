@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:cakli/app/routes/app_pages.dart';
 import '../controllers/setlokasi_controller.dart';
@@ -10,14 +11,8 @@ class SetlokasiView extends GetView<SetlokasiController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEBE8E8),
-      appBar: AppBar(
-        title: const Text(
-          'Set Lokasi Jemput',
-          style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w900),
-        ),
-        backgroundColor: const Color(0xFFEBE8E8),
-      ),
+      backgroundColor: Colors.white,
+      appBar: CustomAppBar(title: 'Pilih Lokasi'),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -59,8 +54,7 @@ class SetlokasiView extends GetView<SetlokasiController> {
             ),
           ),
 
-          const SizedBox(height: 10),
-
+          const SizedBox(height: 20),
           const Divider(thickness: 1, color: Colors.grey, height: 0),
 
           Expanded(
@@ -115,10 +109,18 @@ class SetlokasiView extends GetView<SetlokasiController> {
   }) {
     return Container(
       height: 50,
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(60),
+        border: Border.all(color: Color(0xFFCFCFCF), width: 1),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -127,12 +129,76 @@ class SetlokasiView extends GetView<SetlokasiController> {
           const SizedBox(width: 8),
           Text(
             text,
-            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w500,
+              fontSize: 12,
+            ),
           ),
         ],
       ),
     );
   }
+}
+
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  final VoidCallback? onBackPressed;
+  final List<Widget>? actions;
+
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    this.onBackPressed,
+    this.actions,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      bottom: false,
+      child: Container(
+        height: preferredSize.height,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              offset: const Offset(0, 2),
+              blurRadius: 4,
+            ),
+          ],
+          color: Colors.white,
+          border: const Border(
+            bottom: BorderSide(color: Color(0xFFE0E0E0), width: 1),
+          ),
+        ),
+        child: Row(
+          children: [
+            // Tombol Back
+            IconButton(
+              onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
+              icon: const Icon(Icons.arrow_back, color: Colors.black, size: 24),
+            ),
+            // Title
+            Expanded(
+              child: Text(
+                title,
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            // Actions (opsional)
+            if (actions != null) ...actions!,
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(56);
 }
 
 /// =============================
@@ -155,11 +221,11 @@ class RouteLocationCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.grey.shade300),
+        border: Border.all(color: Color(0xFFCFCFCF), width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 8,
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
             offset: const Offset(0, 4),
           ),
         ],
@@ -185,10 +251,9 @@ class RouteLocationCard extends StatelessWidget {
               ),
 
               Container(
-                width: 2,
-                height: 24,
                 margin: const EdgeInsets.symmetric(vertical: 4),
-                color: Colors.grey,
+                // color: Colors.grey,
+                child: Icon(Symbols.more_vert),
               ),
 
               Container(
@@ -212,9 +277,8 @@ class RouteLocationCard extends StatelessWidget {
               children: [
                 Text(
                   pickup,
-                  style: const TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 16,
-                    fontFamily: 'Poppins',
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -227,9 +291,8 @@ class RouteLocationCard extends StatelessWidget {
 
                 Text(
                   destination,
-                  style: const TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 16,
-                    fontFamily: 'Poppins',
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -276,9 +339,8 @@ class LocationHeader extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 16,
-                      fontFamily: 'Poppins',
                       fontWeight: FontWeight.w900,
                       color: highlight ? const Color(0xFFE45A1F) : Colors.black,
                     ),
@@ -286,9 +348,8 @@ class LocationHeader extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     address,
-                    style: const TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 14,
-                      fontFamily: 'Poppins',
                       color: Colors.black54,
                     ),
                   ),
@@ -336,16 +397,16 @@ class LocationOption extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 16,
-                      fontFamily: 'Poppins',
+
                       fontWeight: FontWeight.w900,
                     ),
                   ),
                   if (subtitle.isNotEmpty)
                     Text(
                       subtitle,
-                      style: const TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 13,
                         color: Colors.black54,
                       ),

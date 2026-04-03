@@ -15,35 +15,36 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEBEBEB),
-      body: Stack(
-        children: [
-          // ================= BACKGROUND IMAGE =================
-          ImageHeader(),
-          Padding(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top * 3.5),
-            child: TextHeader(),
-          ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [
+              ImageHeader(),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).padding.top * 3.5,
+                ),
+                child: TextHeader(),
+              ),
 
-          // ================= KONTEN =================
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: 250), // kasih ruang supaya gak ketiban header
-                SizedBox(height: 20),
-                ContainerMap(),
-                SizedBox(height: 5),
-                ListLocation(),
-              ],
-            ),
-          ),
+              Column(
+                children: [
+                  SizedBox(height: 250),
+                  SizedBox(height: 20),
+                  ContainerMap(),
+                  SizedBox(height: 5),
+                  ListLocation(),
+                ],
+              ),
 
-          // ================= PROFILE (POJOK KANAN ATAS) =================
-          Positioned(
-            top: MediaQuery.of(context).padding.top * 0.5,
-            right: 15,
-            child: Profile(),
+              Positioned(
+                top: MediaQuery.of(context).padding.top * 0.5,
+                right: 15,
+                child: Profile(),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -123,8 +124,16 @@ class ContainerMap extends StatelessWidget {
       margin: EdgeInsets.all(20),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
         color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Color(0xFFCFCFCF), width: 1),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [

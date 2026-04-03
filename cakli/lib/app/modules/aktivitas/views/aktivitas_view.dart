@@ -9,14 +9,8 @@ class AktivitasView extends GetView<AktivitasController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEBE8E8),
-      appBar: AppBar(
-        title: const Text(
-          'Aktivitas',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: const Color(0xFFEBE8E8),
-      ),
+      backgroundColor: Colors.white,
+      appBar: CustomAppBar(title: "Aktivitas"),
       body: DefaultTabController(
         length: 4,
         child: Column(
@@ -25,8 +19,20 @@ class AktivitasView extends GetView<AktivitasController> {
               elevation: 4, // 👈 ini shadow
               shadowColor: Colors.black26,
               child: Container(
-                color: const Color(0xFFEBE8E8),
+                color: Colors.white,
                 child: const TabBar(
+                  labelColor: Colors.black, // 🔥 warna tab aktif
+                  labelStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.5,
+                  ),
+                  unselectedLabelStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.5,
+                  ),
+                  unselectedLabelColor: Colors.grey, // warna tab tidak aktif
                   indicatorColor: Color(0xFFE45A1F),
                   tabs: [
                     Tab(text: "Riwayat"),
@@ -40,6 +46,7 @@ class AktivitasView extends GetView<AktivitasController> {
 
             Expanded(
               child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
                   Center(
                     child: ListView(
@@ -83,6 +90,55 @@ class AktivitasView extends GetView<AktivitasController> {
   }
 }
 
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  final VoidCallback? onBackPressed;
+  final List<Widget>? actions;
+
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    this.onBackPressed,
+    this.actions,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      bottom: false,
+      child: Container(
+        height: preferredSize.height,
+        decoration: BoxDecoration(color: Colors.white),
+        child: Row(
+          children: [
+            // Tombol Back
+            IconButton(
+              onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
+              icon: const Icon(Icons.arrow_back, color: Colors.black, size: 24),
+            ),
+            // Title
+            Expanded(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            // Actions (opsional)
+            if (actions != null) ...actions!,
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(56);
+}
+
 class RiwayatCard extends StatelessWidget {
   final String lokasi;
   final String tanggal;
@@ -102,119 +158,179 @@ class RiwayatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF3F3F3),
-        borderRadius: BorderRadius.circular(28),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Color(0xFFCFCFCF), width: 1),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Row(
         children: [
           /// IMAGE
-          Container(
-            width: MediaQuery.of(context).size.width * 0.2,
-            height: MediaQuery.of(context).size.width * 0.2,
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFDAC7),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Image.asset('assets/images/aktivitas/becak.png'),
-          ),
-
-          SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+          PictureProfile(),
+          SizedBox(width: 10),
 
           /// RIGHT SIDE
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /// TITLE + PRICE
-                Row(
-                  children: [
-                    Text(
-                      lokasi,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.046),
-
-                    Text(
-                      harga,
-                      style: const TextStyle(fontSize: 16, color: Colors.grey),
-                    ),
-                  ],
-                ),
-
-                /// DATE
-                Text(
-                  tanggal,
-                  style: const TextStyle(color: Colors.grey, fontSize: 14),
-                ),
-
-                const SizedBox(height: 10),
-
-                /// STATUS + BUTTON
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          selesai ? Icons.check_circle : Icons.cancel,
-                          color: selesai ? Colors.green : Colors.red,
-                          size: 19,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          selesai
-                              ? "Perjalanan selesai"
-                              : "Perjalanan dibatalkan",
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: selesai ? Colors.black : Colors.red,
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    if (selesai)
-                      GestureDetector(
-                        onTap: () {
-                          rating
-                              ? Get.toNamed('/rating')
-                              : Get.toNamed('/setlokasi');
-                        },
-
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal:
-                                MediaQuery.of(context).size.width * 0.04,
-                            vertical: 7,
-                          ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFE04D04),
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                          child: Text(
-                            rating ? "Ulasan" : "Mau Lagi",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
+                Header(lokasi: lokasi, harga: harga),
+                Date(tanggal: tanggal),
+                SizedBox(height: 10),
+                Bottom(selesai: selesai, rating: rating),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class PictureProfile extends StatelessWidget {
+  const PictureProfile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.22,
+      height: MediaQuery.of(context).size.width * 0.22,
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFDAC7),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Image.asset('assets/images/aktivitas/becak.png', width: MediaQuery.of(context).size.width * 0.18,),
+    );
+  }
+}
+
+class Header extends StatelessWidget {
+  final String lokasi;
+  final String harga;
+
+  const Header({super.key, required this.lokasi, required this.harga});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          lokasi,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+        ),
+
+        Text(harga, style: const TextStyle(fontSize: 16, color: Colors.grey)),
+      ],
+    );
+  }
+}
+
+class Date extends StatelessWidget {
+  final String tanggal;
+
+  const Date({super.key, required this.tanggal});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      tanggal,
+      style: const TextStyle(color: Colors.grey, fontSize: 14),
+    );
+  }
+}
+
+class Bottom extends StatelessWidget {
+  final bool selesai;
+  final bool rating;
+
+  const Bottom({super.key, required this.selesai, required this.rating});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Status(selesai: selesai),
+        Button(selesai: selesai, rating: rating),
+      ],
+    );
+  }
+}
+
+class Status extends StatelessWidget {
+  final bool selesai;
+
+  const Status({super.key, required this.selesai});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(
+          selesai ? Icons.check_circle : Icons.cancel,
+          color: selesai ? Colors.green : Colors.red,
+          size: 18,
+        ),
+        const SizedBox(width: 4),
+        Text(
+          selesai ? "Perjalanan selesai" : "Perjalanan dibatalkan",
+          style: TextStyle(
+            fontSize: 12,
+            color: selesai ? Colors.black : Colors.red,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class Button extends StatelessWidget {
+  final bool selesai;
+  final bool rating;
+
+  const Button({super.key, required this.selesai, required this.rating});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        if (selesai)
+          GestureDetector(
+            onTap: () {
+              rating ? Get.toNamed('/rating') : Get.toNamed('/setlokasi');
+            },
+
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.04,
+                vertical: 7,
+              ),
+              decoration: BoxDecoration(
+                color: const Color(0xFFE04D04),
+                borderRadius: BorderRadius.circular(24),
+              ),
+              child: Text(
+                rating ? "Ulasan" : "Mau Lagi",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
