@@ -152,7 +152,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class TextTitle extends StatelessWidget {
-  const TextTitle({super.key});
+  TextTitle({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +177,7 @@ class PictureProfile extends StatelessWidget {
 }
 
 class TextName extends StatelessWidget {
-  const TextName({super.key});
+  TextName({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -227,7 +227,7 @@ class StarsUser extends StatelessWidget {
 }
 
 class TextRating extends StatelessWidget {
-  const TextRating({super.key});
+  TextRating({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -271,7 +271,10 @@ class Money extends StatelessWidget {
         children: [
           Text(
             'Total',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: GoogleFonts.poppins(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
           ),
           Spacer(),
           Row(
@@ -280,7 +283,10 @@ class Money extends StatelessWidget {
               const SizedBox(width: 5),
               Text(
                 '2000',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),
@@ -311,10 +317,7 @@ class ButtonSubmit extends StatelessWidget {
         ),
         child: Text(
           'Kirim',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w600,
-            fontSize: 22,
-          ),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 22),
         ),
       ),
     );

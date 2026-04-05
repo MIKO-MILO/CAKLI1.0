@@ -4,6 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:get/get.dart';
 
@@ -124,9 +125,12 @@ class Header extends StatelessWidget {
                 ),
               ],
             ),
-            child: const Text(
+            child: Text(
               "Offline",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
 
@@ -230,7 +234,7 @@ class NavItem extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             label,
-            style: TextStyle(
+            style: GoogleFonts.poppins(
               color: active ? activeColor : inactiveColor,
               fontSize: 12,
               fontWeight: active ? FontWeight.w600 : FontWeight.normal,
@@ -311,11 +315,11 @@ class _StatusModalState extends State<StatusModal> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         'Offline',
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                       const SizedBox(width: 6),
@@ -332,9 +336,12 @@ class _StatusModalState extends State<StatusModal> {
                   const SizedBox(height: 16),
 
                   // Poin hari ini
-                  const Text(
+                  Text(
                     'Poin hari ini',
-                    style: TextStyle(fontSize: 13, color: Colors.grey),
+                    style: GoogleFonts.poppins(
+                      fontSize: 13,
+                      color: Colors.grey,
+                    ),
                   ),
                   const SizedBox(height: 6),
                   Row(
@@ -348,18 +355,21 @@ class _StatusModalState extends State<StatusModal> {
                       SizedBox(width: 6),
                       Text(
                         '750',
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 32,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w700,
                           color: Colors.black,
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 4),
-                  const Text(
+                  Text(
                     '5 dari 5 trip selesai',
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
                   ),
 
                   const SizedBox(height: 20),
@@ -404,9 +414,9 @@ class _StatusModalState extends State<StatusModal> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                        Text(
                           'Autobid',
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                           ),
@@ -471,7 +481,10 @@ class _StatItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(fontSize: 11, color: Colors.grey)),
+        Text(
+          label,
+          style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey),
+        ),
         const SizedBox(height: 4),
         Row(
           mainAxisSize: MainAxisSize.min,
@@ -480,7 +493,10 @@ class _StatItem extends StatelessWidget {
             const SizedBox(width: 4),
             Text(
               value,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             const SizedBox(width: 4),
             const Icon(Icons.info_outline, size: 14, color: Colors.grey),

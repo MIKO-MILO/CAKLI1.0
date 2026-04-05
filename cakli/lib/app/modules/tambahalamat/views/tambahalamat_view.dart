@@ -96,17 +96,17 @@ class BottomView extends StatelessWidget {
           child: ListView(
             controller: scrollController,
             padding: EdgeInsets.only(top: 20),
-            children: const [
-              SizedBox(height: 10),
+            children: [
+              const SizedBox(height: 10),
               TextTittle(),
-              SizedBox(height: 20),
-              SeacrhButton(),
-              SizedBox(height: 20),
-              ContainerAdress(),
-              SizedBox(height: 20),
-              FormField(),
-              SizedBox(height: 20),
-              ButtonSubmit(),
+              const SizedBox(height: 20),
+              const SeacrhButton(),
+              const SizedBox(height: 20),
+              const ContainerAdress(),
+              const SizedBox(height: 20),
+              const FormField(),
+              const SizedBox(height: 20),
+              const ButtonSubmit(),
             ],
           ),
         );
@@ -165,10 +165,10 @@ class SeacrhButton extends StatelessWidget {
               color: Color(0xFFF36200),
             ),
             const SizedBox(width: 12),
-            const Expanded(
+            Expanded(
               child: Text(
                 "Cari lokasi tujuan",
-                style: TextStyle(color: Colors.grey, fontSize: 16),
+                style: GoogleFonts.poppins(color: Colors.grey, fontSize: 16),
               ),
             ),
             const Icon(Symbols.search),
@@ -231,7 +231,10 @@ class AdressContainerAdress extends StatelessWidget {
         children: [
           Text(
             "SMKN 4 Malang",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: GoogleFonts.poppins(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
           ),
 
           const SizedBox(height: 6),
@@ -240,7 +243,7 @@ class AdressContainerAdress extends StatelessWidget {
             "Jl. Tanimbar No. 22 Lorem Ipsum dolor sit Amet "
             "blablaskdkjieygdyt Curabitur ut finibus metus, "
             "aliquet tempus sem.",
-            style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+            style: GoogleFonts.poppins(fontSize: 14, color: Colors.grey[700]),
           ),
         ],
       ),
@@ -256,17 +259,17 @@ class TextFieldAddPatokan extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 3),
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
-          border: Border.all(color: Color(0xFFCFCFCF), width: 1),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 5,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+        border: Border.all(color: Color(0xFFCFCFCF), width: 1),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
       child: TextField(
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 70),
@@ -306,10 +309,10 @@ class FormField extends StatelessWidget {
           children: [
             Text(
               "Nama Alamat",
-              style: TextStyle(fontSize: 18, color: Colors.black54),
+              style: GoogleFonts.poppins(fontSize: 18, color: Colors.black54),
             ),
             SizedBox(width: 4),
-            Text("*", style: TextStyle(color: Colors.red)),
+            Text("*", style: GoogleFonts.poppins(color: Colors.red)),
           ],
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -343,9 +346,9 @@ class ButtonSubmit extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        child: const Text(
+        child: Text(
           'Simpan',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w700),
         ),
       ),
     );

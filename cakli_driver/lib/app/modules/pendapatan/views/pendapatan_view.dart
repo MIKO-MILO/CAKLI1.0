@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
 import '../controllers/pendapatan_controller.dart';
@@ -73,7 +73,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
@@ -126,9 +126,9 @@ class SaldoCard extends StatelessWidget {
                           child: Center(
                             child: Text(
                               "Harian",
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w700,
                                 color: controller.selectedTab.value == 0
                                     ? Colors.black
                                     : Colors.grey,
@@ -144,9 +144,9 @@ class SaldoCard extends StatelessWidget {
                           child: Center(
                             child: Text(
                               "Mingguan",
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w700,
                                 color: controller.selectedTab.value == 1
                                     ? Colors.black
                                     : Colors.grey,
@@ -200,32 +200,32 @@ class SaldoCard extends StatelessWidget {
                   const SizedBox(height: 8),
 
                   if (controller.selectedTab.value == 0) ...[
-                    const Text(
+                    Text(
                       "Pendapatan Hari Ini",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         fontSize: 15,
                       ),
                     ),
                     const SizedBox(height: 6),
-                    const Text(
+                    Text(
                       "Rp 57.800",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 26,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ] else ...[
-                    const Text(
+                    Text(
                       "Pendapatan Minggu Ini",
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 6),
-                    const Text(
+                    Text(
                       "Rp 32.500",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 26,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],
@@ -241,7 +241,7 @@ class SaldoCard extends StatelessWidget {
                   if (controller.selectedTab.value == 0) ...[
                     Text(
                       '11 Pengantaran Selesai',
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),
@@ -255,13 +255,16 @@ class SaldoCard extends StatelessWidget {
                       ),
                       child: Text(
                         'Lihat Detail',
-                        style: TextStyle(color: Colors.white, fontSize: 12),
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ] else ...[
                     Text(
                       '50 Pengantaran Selesai',
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),
@@ -275,7 +278,10 @@ class SaldoCard extends StatelessWidget {
                       ),
                       child: Text(
                         'Lihat Detail',
-                        style: TextStyle(color: Colors.white, fontSize: 12),
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ],
@@ -356,12 +362,12 @@ class WalletCard extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(fontSize: 14, color: Colors.black54),
+          style: GoogleFonts.poppins(fontSize: 14, color: Colors.black54),
         ),
         const SizedBox(height: 4),
         Text(
           amount,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w700),
         ),
       ],
     );
@@ -398,7 +404,7 @@ class WalletCard extends StatelessWidget {
 }
 
 class TextAddWallet extends StatelessWidget {
-  const TextAddWallet({super.key});
+  TextAddWallet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -407,10 +413,10 @@ class TextAddWallet extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 30, left: 30),
       child: Text(
         'Pendapatan tambahan',
-        style: TextStyle(
+        style: GoogleFonts.poppins(
           color: Colors.black,
           fontSize: 20,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w700,
         ),
       ),
     );
@@ -448,7 +454,7 @@ class AddWallet extends StatelessWidget {
               Image.asset('assets/images/icon/poin-map.png'),
               Text(
                 'Jadwal Operasional',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
@@ -485,7 +491,7 @@ class AddWallet extends StatelessWidget {
               Image.asset('assets/images/icon/cash.png'),
               Text(
                 'Intensif & Lainnya',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,

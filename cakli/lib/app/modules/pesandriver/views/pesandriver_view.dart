@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:get/get.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:cakli/app/routes/app_pages.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class PesandriverView extends StatelessWidget {
   const PesandriverView({super.key});
@@ -12,24 +16,11 @@ class PesandriverView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEBE8E8),
-      appBar: AppBar(title: const Text('Pesan Driver')),
+      appBar: AppBar(title: Text('Pesan Driver')),
       body: Stack(
         children: [
           /// ================= MAP =================
-          Positioned.fill(
-            child: FlutterMap(
-              options: const MapOptions(
-                initialCenter: LatLng(-7.9553, 112.6280),
-                initialZoom: 9.2,
-              ),
-              children: [
-                TileLayer(
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  userAgentPackageName: 'com.cakli.app',
-                ),
-              ],
-            ),
-          ),
+          const MapView(),
 
           /// ================= DRAGGABLE SHEET =================
           DraggableScrollableSheet(
@@ -71,58 +62,7 @@ class PesandriverView extends StatelessWidget {
                             horizontal: 24,
                             vertical: 30,
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              /// ===== TEXT KIRI =====
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    "Pengemudi dalam",
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      height: 1.3,
-                                    ),
-                                  ),
-                                  Text(
-                                    "perjalanan",
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      height: 1.3,
-                                    ),
-                                  ),
-                                ],
-                              ),
-
-                              /// ===== TEXT KANAN =====
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: const [
-                                  Text(
-                                    "Perkiraan datang",
-                                    style: TextStyle(fontSize: 14, height: 1.3),
-                                    textAlign: TextAlign.right,
-                                  ),
-                                  Text(
-                                    "dalam",
-                                    style: TextStyle(fontSize: 14, height: 1.3),
-                                    textAlign: TextAlign.right,
-                                  ),
-                                  Text(
-                                    "10 menit",
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                          child: HeaderText(),
                         ),
 
                         /// CARD DRIVER
@@ -216,9 +156,9 @@ class PesandriverView extends StatelessWidget {
                                 children: [
                                   Text(
                                     "Alenxander Fabio",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   ),
 
@@ -233,7 +173,7 @@ class PesandriverView extends StatelessWidget {
                                   const SizedBox(width: 3),
                                   Text(
                                     "5.0",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -247,7 +187,7 @@ class PesandriverView extends StatelessWidget {
                                 children: [
                                   Text(
                                     "Becak Honda A70s",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -264,7 +204,7 @@ class PesandriverView extends StatelessWidget {
                                       const SizedBox(width: 5),
                                       Text(
                                         "N 1234 SYBAU",
-                                        style: TextStyle(
+                                        style: GoogleFonts.poppins(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400,
                                         ),
@@ -342,9 +282,8 @@ class PesandriverView extends StatelessWidget {
                                       children: [
                                         Text(
                                           "SMK Negeri 4 Malang",
-                                          style: const TextStyle(
+                                          style: GoogleFonts.poppins(
                                             fontSize: 16,
-                                            fontFamily: 'Poppins',
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
@@ -355,9 +294,8 @@ class PesandriverView extends StatelessWidget {
 
                                         Text(
                                           "Rujak Cingur Penyet",
-                                          style: const TextStyle(
+                                          style: GoogleFonts.poppins(
                                             fontSize: 16,
-                                            fontFamily: 'Poppins',
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
@@ -395,9 +333,9 @@ class PesandriverView extends StatelessWidget {
 
                                       Text(
                                         "Tunai",
-                                        style: TextStyle(
+                                        style: GoogleFonts.poppins(
                                           fontSize: 20,
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.w700,
                                         ),
                                       ),
                                     ],
@@ -405,9 +343,9 @@ class PesandriverView extends StatelessWidget {
 
                                   Text(
                                     "Rp. 12.000",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   ),
                                 ],
@@ -436,14 +374,14 @@ class PesandriverView extends StatelessWidget {
                                 color: const Color(0xFFE45A1F),
                                 borderRadius: BorderRadius.circular(40),
                               ),
-                              child: const Row(
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     "Batalkan Pesanan",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       color: Colors.white,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 16,
                                     ),
                                   ),
@@ -461,6 +399,121 @@ class PesandriverView extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class MapView extends StatelessWidget {
+  const MapView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned.fill(
+      child: FlutterMap(
+        options: MapOptions(
+          initialCenter: LatLng(-7.9553, 112.6280),
+          initialZoom: 9.2,
+        ),
+        children: [
+          TileLayer(
+            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            userAgentPackageName: 'com.cakli.app',
+            tileProvider: NetworkTileProvider(
+              httpClient: _HeaderedClient({'User-Agent': 'com.cakli.app/1.0'}),
+            ),
+          ),
+          RichAttributionWidget(
+            attributions: [
+              TextSourceAttribution(
+                'OpenStreetMap contributors',
+                onTap: () async {
+                  final url = Uri.parse('https://openstreetmap.org/copyright');
+                  if (!await launchUrl(url)) {
+                    throw Exception('Could not launch $url');
+                  }
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _HeaderedClient extends http.BaseClient {
+  final Map<String, String> headers;
+  final http.Client _inner = http.Client();
+
+  _HeaderedClient(this.headers);
+
+  @override
+  Future<http.StreamedResponse> send(http.BaseRequest request) {
+    request.headers.addAll(headers);
+    return _inner.send(request);
+  }
+}
+
+class HeaderText extends StatelessWidget {
+  const HeaderText({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        /// ===== TEXT KIRI =====
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Pengemudi dalam",
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                height: 1.3,
+                letterSpacing: 0.5,
+              ),
+            ),
+            Text(
+              "perjalanan",
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                height: 1.3,
+                letterSpacing: 0.5,
+              ),
+            ),
+          ],
+        ),
+
+        /// ===== TEXT KANAN =====
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              "Perkiraan datang",
+              style: GoogleFonts.poppins(fontSize: 12, height: 1, letterSpacing: 0.5),
+              textAlign: TextAlign.right,
+            ),
+            Text(
+              "dalam",
+              style: GoogleFonts.poppins(fontSize: 12, height: 1, letterSpacing: 0.5),
+              textAlign: TextAlign.right,
+            ),
+            Text(
+              "10 menit",
+              style: GoogleFonts.poppins(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                height: 1,
+                letterSpacing: 0.5,
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

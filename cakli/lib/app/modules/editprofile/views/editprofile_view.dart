@@ -1,6 +1,7 @@
 import 'package:cakli/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../controllers/editprofile_controller.dart';
 
 class EditprofileView extends GetView<EditprofileController> {
@@ -81,7 +82,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
@@ -135,7 +136,7 @@ class PictureProfile extends StatelessWidget {
 }
 
 class TextEditButton extends StatelessWidget {
-  const TextEditButton({super.key});
+  TextEditButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -143,9 +144,13 @@ class TextEditButton extends StatelessWidget {
       onPressed: () {
         print('Klik Edit Foto');
       },
-      child: const Text(
+      child: Text(
         'Edit Foto',
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+        style: GoogleFonts.poppins(
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+          color: Colors.black,
+        ),
       ),
     );
   }
@@ -158,25 +163,28 @@ class FormFieldName extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       initialValue: "Ustadzah",
-      style: const TextStyle(
+      style: GoogleFonts.poppins(
         fontSize: 22,
         fontWeight: FontWeight.w600,
         color: Colors.black87,
       ),
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         label: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text("Nama", style: TextStyle(fontSize: 16, color: Colors.black54)),
-            SizedBox(width: 4),
-            Text("*", style: TextStyle(color: Colors.red)),
+            Text(
+              "Nama",
+              style: GoogleFonts.poppins(fontSize: 16, color: Colors.black54),
+            ),
+            const SizedBox(width: 4),
+            Text("*", style: GoogleFonts.poppins(color: Colors.red)),
           ],
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        enabledBorder: UnderlineInputBorder(
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
         ),
-        focusedBorder: UnderlineInputBorder(
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black),
         ),
       ),
@@ -191,28 +199,28 @@ class FormFieldPhone extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       initialValue: "08123456567",
-      style: const TextStyle(
+      style: GoogleFonts.poppins(
         fontSize: 22,
         fontWeight: FontWeight.w600,
         color: Colors.black87,
       ),
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         label: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               "Nomor Telepon",
-              style: TextStyle(fontSize: 16, color: Colors.black54),
+              style: GoogleFonts.poppins(fontSize: 16, color: Colors.black54),
             ),
-            SizedBox(width: 4),
-            Text("*", style: TextStyle(color: Colors.red)),
+            const SizedBox(width: 4),
+            Text("*", style: GoogleFonts.poppins(color: Colors.red)),
           ],
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        enabledBorder: UnderlineInputBorder(
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
         ),
-        focusedBorder: UnderlineInputBorder(
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black),
         ),
       ),
@@ -227,28 +235,28 @@ class FormFieldEmail extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       initialValue: "mimimimimi@gmail.com",
-      style: const TextStyle(
+      style: GoogleFonts.poppins(
         fontSize: 22,
         fontWeight: FontWeight.w600,
         color: Colors.black87,
       ),
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         label: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               "Email",
-              style: TextStyle(fontSize: 16, color: Colors.black54),
+              style: GoogleFonts.poppins(fontSize: 16, color: Colors.black54),
             ),
-            SizedBox(width: 4),
-            Text("*", style: TextStyle(color: Colors.red)),
+            const SizedBox(width: 4),
+            Text("*", style: GoogleFonts.poppins(color: Colors.red)),
           ],
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        enabledBorder: UnderlineInputBorder(
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
         ),
-        focusedBorder: UnderlineInputBorder(
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black),
         ),
       ),
@@ -275,9 +283,9 @@ class ButtonSubmit extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        child: const Text(
+        child: Text(
           'Simpan',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w700),
         ),
       ),
     );

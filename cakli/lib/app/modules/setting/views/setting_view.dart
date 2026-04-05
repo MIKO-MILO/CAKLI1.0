@@ -1,5 +1,6 @@
 import 'package:cakli/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:get/get.dart';
 import '../controllers/setting_controller.dart';
@@ -23,10 +24,10 @@ class SettingView extends GetView<SettingController> {
                   ProfileTop(),
                   SizedBox(height: 20),
                   TextPengaturan(),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 20),
                   SettingWhiteView(),
-                  SizedBox(height: 20,),
-                  SettingRedView()
+                  SizedBox(height: 20),
+                  SettingRedView(),
                 ],
               ),
             ),
@@ -111,7 +112,7 @@ class TextProfile extends StatelessWidget {
       children: [
         Text(
           'Aulia Sukma',
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700),
         ),
         Text('auliasr.edu@gmail.com'),
         Text('0821345678'),
@@ -141,7 +142,7 @@ class TextPengaturan extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Pengaturan',
-      style: TextStyle(
+      style: GoogleFonts.poppins(
         fontSize: 18,
         fontWeight: FontWeight.w600,
         color: Colors.grey[800],
@@ -173,14 +174,14 @@ class SettingWhiteView extends StatelessWidget {
         children: [
           ListTile(
             leading: const Icon(Icons.shield),
-            title: const Text('Ganti Email'),
+            title: Text('Ganti Email'),
             onTap: () {
               Get.toNamed(Routes.EDITEMAIL);
             },
           ),
           ListTile(
             leading: const Icon(Symbols.credit_card, fill: 1),
-            title: const Text('Ganti PIN E-Wallet'),
+            title: Text('Ganti PIN E-Wallet'),
             onTap: () {
               // Aksi saat menu Notifikasi ditekan
               Get.toNamed(Routes.EDITPIN);
@@ -188,7 +189,7 @@ class SettingWhiteView extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.bookmark),
-            title: const Text('Alamat Tersimpan'),
+            title: Text('Alamat Tersimpan'),
             onTap: () {
               Get.toNamed(Routes.EDITALAMAT);
             },
@@ -196,7 +197,7 @@ class SettingWhiteView extends StatelessWidget {
 
           ListTile(
             leading: const Icon(Symbols.history, fill: 1, weight: 900),
-            title: const Text('Riwayat'),
+            title: Text('Riwayat'),
             onTap: () {
               Get.toNamed(Routes.AKTIVITAS);
             },
@@ -204,7 +205,7 @@ class SettingWhiteView extends StatelessWidget {
 
           ListTile(
             leading: const Icon(Symbols.star, fill: 1),
-            title: const Text('Beri Rating'),
+            title: Text('Beri Rating'),
             onTap: () {
               // Aksi saat menu Privasi ditekan
             },
@@ -212,7 +213,7 @@ class SettingWhiteView extends StatelessWidget {
 
           ListTile(
             leading: const Icon(Symbols.settings, fill: 1),
-            title: const Text('MAPTEST'),
+            title: Text('MAPTEST'),
             onTap: () {
               Get.toNamed(Routes.MAPTEST);
             },
@@ -251,9 +252,9 @@ class SettingRedView extends StatelessWidget {
               fill: 1,
               weight: 900,
             ),
-            title: const Text(
+            title: Text(
               'Keluar',
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 color: Colors.redAccent,
                 fontWeight: FontWeight.w900,
               ),
@@ -269,9 +270,9 @@ class SettingRedView extends StatelessWidget {
               color: Colors.redAccent,
               fill: 1,
             ),
-            title: const Text(
+            title: Text(
               'Hapus Akun',
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 color: Colors.redAccent,
                 fontWeight: FontWeight.w900,
               ),

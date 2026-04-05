@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 import '../controllers/chat_controller.dart';
@@ -26,7 +27,10 @@ class ChatView extends GetView<ChatController> {
               children: [
                 Text(
                   "Febrian",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
 
                 Row(
@@ -34,7 +38,7 @@ class ChatView extends GetView<ChatController> {
                   children: [
                     Text(
                       "N 1234 SYBAU",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: Colors.black54,
@@ -54,7 +58,7 @@ class ChatView extends GetView<ChatController> {
                         const SizedBox(width: 5),
                         Text(
                           "Becak Honda A70s",
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
                             color: Colors.black54,
@@ -137,7 +141,7 @@ class ChatBubble extends StatelessWidget {
           children: [
             Text(text),
             SizedBox(height: 4),
-            Text("13.00", style: TextStyle(fontSize: 10)),
+            Text("13.00", style: GoogleFonts.poppins(fontSize: 10)),
           ],
         ),
       ),

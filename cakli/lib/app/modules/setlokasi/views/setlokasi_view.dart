@@ -84,7 +84,6 @@ class SetlokasiView extends GetView<SetlokasiController> {
                     Get.toNamed(Routes.PESANALAMAT);
                   },
                 ),
-                const Divider(thickness: 1, height: 0),
                 LocationHeader(
                   title: "SMK Negeri 8 Malang",
                   address: "Jl. Teluk Pacitan, Arjosari, Blimbing",
@@ -93,7 +92,6 @@ class SetlokasiView extends GetView<SetlokasiController> {
                     Get.toNamed(Routes.PESANALAMAT);
                   },
                 ),
-                const Divider(thickness: 1, height: 0),
               ],
             ),
           ),
@@ -340,8 +338,8 @@ class LocationHeader extends StatelessWidget {
                   Text(
                     title,
                     style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
                       color: highlight ? const Color(0xFFE45A1F) : Colors.black,
                     ),
                   ),
@@ -349,13 +347,18 @@ class LocationHeader extends StatelessWidget {
                   Text(
                     address,
                     style: GoogleFonts.poppins(
-                      fontSize: 14,
+                      fontSize: 12,
                       color: Colors.black54,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ],
               ),
             ),
+
+            const SizedBox(height: 12),
+
+            const Divider(thickness: 1, color: Colors.grey, height: 0),
           ],
         ),
       ),
@@ -384,13 +387,10 @@ class LocationOption extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 240, 240, 240),
-        ),
+        decoration: BoxDecoration(color: const Color(0xFFF7F7F7)),
         child: Row(
           children: [
-            Icon(icon, size: 20, color: Colors.grey[700]),
-            const SizedBox(width: 12),
+            SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -398,18 +398,24 @@ class LocationOption extends StatelessWidget {
                   Text(
                     title,
                     style: GoogleFonts.poppins(
-                      fontSize: 16,
+                      fontSize: 13,
 
-                      fontWeight: FontWeight.w900,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   if (subtitle.isNotEmpty)
-                    Text(
-                      subtitle,
-                      style: GoogleFonts.poppins(
-                        fontSize: 13,
-                        color: Colors.black54,
-                      ),
+                    Row(
+                      children: [
+                        Icon(icon, color: Colors.grey, fill: 1, size: 20),
+                        const SizedBox(width: 4),
+                        Text(
+                          subtitle,
+                          style: GoogleFonts.poppins(
+                            fontSize: 13,
+                            color: Colors.black54,
+                          ),
+                        ),
+                      ],
                     ),
                 ],
               ),

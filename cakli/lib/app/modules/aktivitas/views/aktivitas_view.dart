@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/aktivitas_controller.dart';
 
@@ -20,21 +21,21 @@ class AktivitasView extends GetView<AktivitasController> {
               shadowColor: Colors.black26,
               child: Container(
                 color: Colors.white,
-                child: const TabBar(
+                child: TabBar(
                   labelColor: Colors.black, // 🔥 warna tab aktif
-                  labelStyle: TextStyle(
+                  labelStyle: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 0.5,
                   ),
-                  unselectedLabelStyle: TextStyle(
+                  unselectedLabelStyle: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 0.5,
                   ),
                   unselectedLabelColor: Colors.grey, // warna tab tidak aktif
-                  indicatorColor: Color(0xFFE45A1F),
-                  tabs: [
+                  indicatorColor: const Color(0xFFE45A1F),
+                  tabs: const [
                     Tab(text: "Riwayat"),
                     Tab(text: "Dalam proses"),
                     Tab(text: "Terjadwal"),
@@ -120,7 +121,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
@@ -208,7 +209,10 @@ class PictureProfile extends StatelessWidget {
         color: const Color(0xFFFFDAC7),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Image.asset('assets/images/aktivitas/becak.png', width: MediaQuery.of(context).size.width * 0.18,),
+      child: Image.asset(
+        'assets/images/aktivitas/becak.png',
+        width: MediaQuery.of(context).size.width * 0.18,
+      ),
     );
   }
 }
@@ -226,10 +230,13 @@ class Header extends StatelessWidget {
       children: [
         Text(
           lokasi,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+          style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700),
         ),
 
-        Text(harga, style: const TextStyle(fontSize: 16, color: Colors.grey)),
+        Text(
+          harga,
+          style: GoogleFonts.poppins(fontSize: 16, color: Colors.grey),
+        ),
       ],
     );
   }
@@ -244,7 +251,7 @@ class Date extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       tanggal,
-      style: const TextStyle(color: Colors.grey, fontSize: 14),
+      style: GoogleFonts.poppins(color: Colors.grey, fontSize: 14),
     );
   }
 }
@@ -284,7 +291,7 @@ class Status extends StatelessWidget {
         const SizedBox(width: 4),
         Text(
           selesai ? "Perjalanan selesai" : "Perjalanan dibatalkan",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
             fontSize: 12,
             color: selesai ? Colors.black : Colors.red,
           ),
@@ -322,7 +329,7 @@ class Button extends StatelessWidget {
               ),
               child: Text(
                 rating ? "Ulasan" : "Mau Lagi",
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontSize: 12,
                   fontWeight: FontWeight.w500,

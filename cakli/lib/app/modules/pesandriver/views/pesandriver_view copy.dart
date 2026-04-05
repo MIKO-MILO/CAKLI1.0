@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
@@ -29,7 +30,7 @@ class PesandriverView extends GetView<PesandriverController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEBE8E8),
-      appBar: AppBar(title: const Text('Pesan Driver')),
+      appBar: AppBar(title: Text('Pesan Driver')),
       body: Stack(
         children: [
           /// 1️⃣ MAP BACKGROUND
@@ -41,8 +42,7 @@ class PesandriverView extends GetView<PesandriverController> {
               ),
               children: [
                 TileLayer(
-                  urlTemplate:
-                      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                   userAgentPackageName: 'com.cakli.app',
                   tileProvider: NetworkTileProvider(
                     httpClient: _HeaderedClient({
@@ -111,20 +111,20 @@ class _BottomActionBar extends StatelessWidget {
                 /// ===== TEXT KIRI =====
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       "Pengemudi dalam",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 22,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
                         height: 1.3,
                       ),
                     ),
                     Text(
                       "perjalanan",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 22,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
                         height: 1.3,
                       ),
                     ),
@@ -134,22 +134,22 @@ class _BottomActionBar extends StatelessWidget {
                 /// ===== TEXT KANAN =====
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
+                  children: [
                     Text(
                       "Perkiraan datang",
-                      style: TextStyle(fontSize: 14, height: 1.3),
+                      style: GoogleFonts.poppins(fontSize: 14, height: 1.3),
                       textAlign: TextAlign.right,
                     ),
                     Text(
                       "dalam",
-                      style: TextStyle(fontSize: 14, height: 1.3),
+                      style: GoogleFonts.poppins(fontSize: 14, height: 1.3),
                       textAlign: TextAlign.right,
                     ),
                     Text(
                       "10 menit",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 17,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],
@@ -240,9 +240,9 @@ class _BottomActionBar extends StatelessWidget {
                   children: [
                     Text(
                       "Alenxander Fabio",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
 
@@ -257,7 +257,7 @@ class _BottomActionBar extends StatelessWidget {
                     const SizedBox(width: 3),
                     Text(
                       "5.0",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                       ),
@@ -270,7 +270,7 @@ class _BottomActionBar extends StatelessWidget {
                   children: [
                     Text(
                       "Becak Honda A70s",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),
@@ -287,7 +287,7 @@ class _BottomActionBar extends StatelessWidget {
                         const SizedBox(width: 5),
                         Text(
                           "N 1234 SYBAU",
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
                           ),
@@ -362,9 +362,8 @@ class _BottomActionBar extends StatelessWidget {
                         children: [
                           Text(
                             "SMK Negeri 4 Malang",
-                            style: const TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 16,
-                              fontFamily: 'Poppins',
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -375,9 +374,8 @@ class _BottomActionBar extends StatelessWidget {
 
                           Text(
                             "Rujak Cingur Penyet",
-                            style: const TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 16,
-                              fontFamily: 'Poppins',
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -412,9 +410,9 @@ class _BottomActionBar extends StatelessWidget {
 
                         Text(
                           "Tunai",
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ],
@@ -422,9 +420,9 @@ class _BottomActionBar extends StatelessWidget {
 
                     Text(
                       "Rp. 12.000",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],
@@ -453,14 +451,14 @@ class _BottomActionBar extends StatelessWidget {
                   color: const Color(0xFFE45A1F),
                   borderRadius: BorderRadius.circular(40),
                 ),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Batalkan Pesanan",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
                         fontSize: 16,
                       ),
                     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cakli/app/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EditpinView extends StatefulWidget {
   const EditpinView({super.key});
@@ -83,7 +84,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
@@ -122,7 +123,7 @@ class TextTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Masukkan 6 digit PIN baru',
-      style: TextStyle(
+      style: GoogleFonts.poppins(
         fontSize: 18,
         fontWeight: FontWeight.w400,
         color: Colors.black,
@@ -228,9 +229,9 @@ class TextForgetPin extends StatelessWidget {
         onPressed: () {
           // Tambahkan aksi lupa PIN
         },
-        child: const Text(
+        child: Text(
           'Lupa PIN',
-          style: TextStyle(
+          style: GoogleFonts.poppins(
             fontSize: 18,
             fontWeight: FontWeight.w600,
             color: Colors.deepOrange,
@@ -260,9 +261,9 @@ class ButtonSubmit extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        child: const Text(
+        child: Text(
           'Selanjutnya',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w700),
         ),
       ),
     );

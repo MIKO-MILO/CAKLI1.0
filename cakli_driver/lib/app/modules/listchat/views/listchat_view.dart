@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 
 import '../controllers/listchat_controller.dart';
@@ -58,7 +58,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
@@ -104,13 +104,19 @@ class ChatPage extends StatelessWidget {
             ),
             title: Text(
               chat["name"]!,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w700,
+                fontSize: 18,
+              ),
             ),
             subtitle: Text(
               chat["message"]!,
-              style: TextStyle(color: Colors.black54),
+              style: GoogleFonts.poppins(color: Colors.black54),
             ),
-            trailing: Text(chat["time"]!, style: TextStyle(color: Colors.grey)),
+            trailing: Text(
+              chat["time"]!,
+              style: GoogleFonts.poppins(color: Colors.grey),
+            ),
           );
         },
       ),

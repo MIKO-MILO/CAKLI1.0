@@ -6,6 +6,7 @@ import 'package:slide_to_act/slide_to_act.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:cakli_driver/app/routes/app_pages.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:get/get.dart';
 
@@ -16,7 +17,7 @@ class AntarorderView extends GetView<AntarorderController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('AntarorderView'), centerTitle: true),
+      appBar: AppBar(title: Text('AntarorderView'), centerTitle: true),
       body: Stack(
         children: [
           SafeArea(
@@ -92,7 +93,12 @@ class PopupMenu extends StatelessWidget {
           ),
           child: ListView(
             controller: scrollController,
-            children: [SheetHandle(), TujuanPengantaranView(), PopupUser(), Popupslider()],
+            children: [
+              SheetHandle(),
+              TujuanPengantaranView(),
+              PopupUser(),
+              Popupslider(),
+            ],
           ),
         );
       },
@@ -150,17 +156,20 @@ class TujuanPengantaranView extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'Tujuan Pengantaran',
-                  style: TextStyle(fontSize: 12, color: Colors.black54),
+                  style: GoogleFonts.poppins(
+                    fontSize: 12,
+                    color: Colors.black54,
+                  ),
                 ),
-                SizedBox(height: 0),
+                const SizedBox(height: 0),
                 Text(
                   'Gerbang Samping, SMK Negeri 4 Malang',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 13,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                     color: Colors.black87,
                   ),
                 ),
@@ -234,7 +243,10 @@ class PopupUser extends StatelessWidget {
                   SizedBox(width: 8),
                   Text(
                     '14 Menit',
-                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+                    style: GoogleFonts.poppins(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
@@ -262,7 +274,10 @@ class PopupUser extends StatelessWidget {
                   SizedBox(width: 8),
                   Text(
                     'Rp 15.000',
-                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+                    style: GoogleFonts.poppins(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
@@ -284,9 +299,9 @@ class PopupUser extends StatelessWidget {
                   backgroundColor: Color(0xFFE65100),
                   child: Text(
                     'AS',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w700,
                       fontSize: 18,
                     ),
                   ),
@@ -301,9 +316,9 @@ class PopupUser extends StatelessWidget {
                     children: [
                       Text(
                         singkatNama('Aulia Sukma Ramadani'),
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
 
@@ -313,7 +328,7 @@ class PopupUser extends StatelessWidget {
                         children: [
                           Icon(Icons.star, color: Colors.amber, size: 18),
                           SizedBox(width: 4),
-                          Text('4.7', style: TextStyle(fontSize: 14)),
+                          Text('4.7', style: GoogleFonts.poppins(fontSize: 14)),
                         ],
                       ),
                     ],
@@ -370,7 +385,10 @@ class Popupslider extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
       child: SlideAction(
         text: "Penumpang Sampai Tujuan",
-        textStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        textStyle: GoogleFonts.poppins(
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+        ),
         outerColor: Color(0xFFE04D04),
         innerColor: Colors.white,
         elevation: 0,

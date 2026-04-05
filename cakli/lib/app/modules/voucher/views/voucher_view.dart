@@ -1,6 +1,7 @@
 import 'package:cakli/app/modules/voucher/model/voucher_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 import '../controllers/voucher_controller.dart';
@@ -21,9 +22,9 @@ class VoucherView extends GetView<VoucherController> {
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Get.back(),
         ),
-        title: const Text(
+        title: Text(
           'Voucher',
-          style: TextStyle(
+          style: GoogleFonts.poppins(
             color: Colors.white,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -37,10 +38,13 @@ class VoucherView extends GetView<VoucherController> {
             child: TextField(
               controller: controller.textController,
               onChanged: (value) => controller.voucherCode.value = value,
-              style: const TextStyle(fontSize: 14),
+              style: GoogleFonts.poppins(fontSize: 14),
               decoration: InputDecoration(
                 hintText: 'Masukkan Kode Voucher',
-                hintStyle: TextStyle(color: Colors.grey[400], fontSize: 14),
+                hintStyle: GoogleFonts.poppins(
+                  color: Colors.grey[400],
+                  fontSize: 14,
+                ),
                 filled: true,
                 fillColor: Colors.white,
                 contentPadding: const EdgeInsets.symmetric(
@@ -151,7 +155,7 @@ class VoucherCard extends StatelessWidget {
                     children: [
                       Text(
                         'Diskon Hingga',
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 13,
                           color: Colors.grey[600],
                           fontWeight: FontWeight.w400,
@@ -159,7 +163,7 @@ class VoucherCard extends StatelessWidget {
                       ),
                       Text(
                         voucher.discountAmount,
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 30,
                           fontWeight: FontWeight.w900,
                           color: amountColor,
@@ -185,13 +189,18 @@ class VoucherCard extends StatelessWidget {
                       child: IconButton(
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
-                        icon: const Icon(Symbols.more_horiz, size: 20, weight: 900, fill: 1,),
+                        icon: const Icon(
+                          Symbols.more_horiz,
+                          size: 20,
+                          weight: 900,
+                          fill: 1,
+                        ),
                         color: Colors.grey[600],
                         onPressed: onMenuTap,
                       ),
                     ),
 
-                   const Spacer(),
+                    const Spacer(),
 
                     Row(
                       mainAxisSize: MainAxisSize.min,
@@ -205,7 +214,7 @@ class VoucherCard extends StatelessWidget {
                         const SizedBox(width: 4),
                         Text(
                           voucher.usagePeriod,
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             fontSize: 11,
                             color: periodColor,
                             fontWeight: FontWeight.w900,
@@ -247,9 +256,9 @@ class VoucherDetailDialog extends StatelessWidget {
                   size: 22,
                 ),
                 const SizedBox(width: 8),
-                const Text(
+                Text(
                   'Detail Voucher',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Color(0xFF212121),
@@ -275,9 +284,9 @@ class VoucherDetailDialog extends StatelessWidget {
                   : const Color(0xFF9E9E9E),
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'Syarat & Ketentuan',
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
                 color: Color(0xFF424242),
@@ -286,7 +295,7 @@ class VoucherDetailDialog extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               voucher.description,
-              style: const TextStyle(
+              style: GoogleFonts.poppins(
                 fontSize: 12.5,
                 color: Color(0xFF757575),
                 height: 1.5,
@@ -305,9 +314,9 @@ class VoucherDetailDialog extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.symmetric(vertical: 12),
                 ),
-                child: const Text(
+                child: Text(
                   'Tutup',
-                  style: TextStyle(fontWeight: FontWeight.w600),
+                  style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
                 ),
               ),
             ),
@@ -334,17 +343,20 @@ class _InfoRow extends StatelessWidget {
           width: 90,
           child: Text(
             label,
-            style: const TextStyle(fontSize: 12.5, color: Color(0xFF9E9E9E)),
+            style: GoogleFonts.poppins(
+              fontSize: 12.5,
+              color: Color(0xFF9E9E9E),
+            ),
           ),
         ),
         Text(
           ':  ',
-          style: const TextStyle(fontSize: 12.5, color: Color(0xFF9E9E9E)),
+          style: GoogleFonts.poppins(fontSize: 12.5, color: Color(0xFF9E9E9E)),
         ),
         Expanded(
           child: Text(
             value,
-            style: TextStyle(
+            style: GoogleFonts.poppins(
               fontSize: 13,
               fontWeight: FontWeight.w600,
               color: valueColor ?? const Color(0xFF212121),

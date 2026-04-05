@@ -3,6 +3,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:get/get.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:cakli_driver/app/routes/app_pages.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/riwayat_controller.dart';
 
@@ -12,10 +13,7 @@ class RiwayatView extends GetView<RiwayatController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text('Riwayat'),
-        backgroundColor: Colors.white,
-      ),
+      appBar: AppBar(title: Text('Riwayat'), backgroundColor: Colors.white),
       body: ListView(
         padding: EdgeInsets.only(bottom: 20),
         children: [
@@ -81,9 +79,9 @@ class DateSelector extends StatelessWidget {
 
               Text(
                 controller.getMonthName(selected.month),
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
 
@@ -121,10 +119,10 @@ class DateSelector extends StatelessWidget {
                         /// TANGGAL
                         Text(
                           date.day.toString(),
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             height: 1,
                             fontSize: 25,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w700,
                             color: isSelected
                                 ? const Color(0xFFE04D04)
                                 : isCurrentMonth
@@ -136,7 +134,7 @@ class DateSelector extends StatelessWidget {
                         /// HARI
                         Text(
                           controller.getDayName(date.weekday),
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             height: 1,
                             fontWeight: FontWeight.w600,
                             fontSize: 13,
@@ -194,9 +192,9 @@ class SaldoCard extends StatelessWidget {
                           child: Center(
                             child: Text(
                               "Total Saldo",
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w700,
                                 color: controller.selectedTab.value == 0
                                     ? Colors.black
                                     : Colors.grey,
@@ -212,9 +210,9 @@ class SaldoCard extends StatelessWidget {
                           child: Center(
                             child: Text(
                               "Laba Bersih",
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w700,
                                 color: controller.selectedTab.value == 1
                                     ? Colors.black
                                     : Colors.grey,
@@ -265,29 +263,29 @@ class SaldoCard extends StatelessWidget {
                   const SizedBox(height: 8),
 
                   if (controller.selectedTab.value == 0) ...[
-                    const Text(
+                    Text(
                       "Total Pendapatan",
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 6),
-                    const Text(
+                    Text(
                       "Rp 57.800",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 26,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ] else ...[
-                    const Text(
+                    Text(
                       "Pendapatan Bersih",
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 6),
-                    const Text(
+                    Text(
                       "Rp 32.500",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 26,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],
@@ -323,11 +321,17 @@ class TripView extends StatelessWidget {
             children: [
               Text(
                 'Trip Selesai',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                style: GoogleFonts.poppins(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               Text(
                 '5',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),
@@ -339,11 +343,17 @@ class TripView extends StatelessWidget {
             children: [
               Text(
                 'Trip Cancel',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                style: GoogleFonts.poppins(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               Text(
                 '0',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),
@@ -402,13 +412,16 @@ class HistoryView extends StatelessWidget {
               children: [
                 Text(
                   harga,
-                  style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900),
+                  style: GoogleFonts.poppins(
+                    fontSize: 23,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
                 Text(
                   status,
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 23,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                     color: Color(0xFFE04D04),
                   ),
                 ),
@@ -417,12 +430,18 @@ class HistoryView extends StatelessWidget {
 
             Text(
               time,
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+              style: GoogleFonts.poppins(
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+              ),
             ),
 
             Text(
               idTransaksi,
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+              style: GoogleFonts.poppins(
+                fontSize: 17,
+                fontWeight: FontWeight.w500,
+              ),
             ),
 
             Divider(height: 30, color: Colors.grey),
@@ -478,7 +497,7 @@ class HistoryView extends StatelessWidget {
                     children: [
                       Text(
                         locationJemput,
-                        style: TextStyle(fontSize: 14),
+                        style: GoogleFonts.poppins(fontSize: 14),
                         overflow: TextOverflow.ellipsis,
                       ),
                       SizedBox(height: 25),
@@ -487,7 +506,7 @@ class HistoryView extends StatelessWidget {
                           Expanded(
                             child: Text(
                               locationTujuan,
-                              style: TextStyle(fontSize: 14),
+                              style: GoogleFonts.poppins(fontSize: 14),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -523,7 +542,7 @@ class HistoryView extends StatelessWidget {
                       SizedBox(width: 4),
                       Text(
                         poin,
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w900,
                         ),
@@ -557,14 +576,14 @@ class HistoryView extends StatelessWidget {
                       metodePembayaran
                           ? Text(
                               'Tunai',
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w900,
                               ),
                             )
                           : Text(
                               'Capay',
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w900,
                               ),

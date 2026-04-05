@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/pengaturan_controller.dart';
 
@@ -100,7 +101,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
@@ -152,7 +153,7 @@ class SettingView extends StatelessWidget {
                   children: [
                     Text(
                       Judul,
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
                         height: 1,
@@ -161,7 +162,10 @@ class SettingView extends StatelessWidget {
                     SizedBox(height: 4),
                     Text(
                       Subjudul,
-                      style: TextStyle(fontSize: 13, color: Colors.grey),
+                      style: GoogleFonts.poppins(
+                        fontSize: 13,
+                        color: Colors.grey,
+                      ),
                     ),
                   ],
                 ),

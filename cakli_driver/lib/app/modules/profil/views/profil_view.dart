@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:get/get.dart';
 import 'package:cakli_driver/app/routes/app_pages.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/profil_controller.dart';
 
@@ -133,7 +134,7 @@ class _UserInfoCard extends GetView<ProfilController> {
                         children: [
                           Text(
                             user.name,
-                            style: const TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 18,
                               fontWeight: FontWeight.w700,
                               color: Color(0xFF1A1A1A),
@@ -143,7 +144,7 @@ class _UserInfoCard extends GetView<ProfilController> {
                           const SizedBox(height: 4),
                           Text(
                             user.email,
-                            style: const TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 13,
                               color: Color(0xFF757575),
                               height: 1.4,
@@ -151,7 +152,7 @@ class _UserInfoCard extends GetView<ProfilController> {
                           ),
                           Text(
                             user.phone,
-                            style: const TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 13,
                               color: Color(0xFF757575),
                               height: 1.4,
@@ -159,7 +160,7 @@ class _UserInfoCard extends GetView<ProfilController> {
                           ),
                           Text(
                             user.userId,
-                            style: const TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 13,
                               color: Color(0xFF757575),
                               height: 1.4,
@@ -209,7 +210,7 @@ class _AvatarWidget extends StatelessWidget {
       alignment: Alignment.center,
       child: Text(
         initials,
-        style: const TextStyle(
+        style: GoogleFonts.poppins(
           color: Colors.white,
           fontSize: 20,
           fontWeight: FontWeight.w700,
@@ -290,22 +291,22 @@ class SaldoPoin extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'Saldo Poin',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: Color(0xFFE04D04),
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 SizedBox(height: 2),
                 Text(
                   '10.000',
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 17,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
                 ),
@@ -339,22 +340,22 @@ class DriverPoin extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'Poin Driver',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: Color(0xFFE04D04),
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 SizedBox(height: 2),
                 Text(
                   '10.000',
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 17,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
                 ),
@@ -394,9 +395,9 @@ class RatingCustomer extends StatelessWidget {
                 SizedBox(width: 5),
                 Text(
                   'Penilaian dari customer',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 15,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
                 ),
@@ -411,7 +412,7 @@ class RatingCustomer extends StatelessWidget {
 }
 
 class TextMenuLainya extends StatelessWidget {
-  const TextMenuLainya({super.key});
+  TextMenuLainya({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -419,9 +420,9 @@ class TextMenuLainya extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Text(
         'Menu Lainnya',
-        style: TextStyle(
+        style: GoogleFonts.poppins(
           fontSize: 18,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w700,
           color: Colors.black,
         ),
       ),
@@ -654,9 +655,9 @@ class MenuLainyaDanger extends StatelessWidget {
               fill: 1,
               weight: 900,
             ),
-            title: const Text(
+            title: Text(
               'Keluar',
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 color: Colors.redAccent,
                 fontWeight: FontWeight.w900,
               ),

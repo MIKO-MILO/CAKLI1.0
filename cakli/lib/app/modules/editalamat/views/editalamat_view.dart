@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cakli/app/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/editalamat_controller.dart';
 
@@ -79,7 +80,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
@@ -130,13 +131,13 @@ class HeaderContainerAdrres extends StatelessWidget {
         children: [
           const Icon(Icons.bookmark, color: Colors.white),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Text(
               "SMKN 4 MALANG",
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 color: Colors.white,
                 fontSize: 18,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
@@ -156,7 +157,7 @@ class FillContainerAdrres extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Text(
         "Jl. Tanimbar No. 22 Lorem Ipsum dolor sit Amet blablaskdkjieygdyt",
-        style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+        style: GoogleFonts.poppins(fontSize: 16, color: Colors.grey[800]),
       ),
     );
   }
@@ -181,9 +182,9 @@ class ButtonAddAdress extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        child: const Text(
+        child: Text(
           'Tambah Alamat',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w700),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cakli/app/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/editemail_controller.dart';
 
@@ -78,7 +79,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
@@ -117,28 +118,28 @@ class FormFieldEmail extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       initialValue: "mimimimimi@gmail.com",
-      style: const TextStyle(
+      style: GoogleFonts.poppins(
         fontSize: 22,
         fontWeight: FontWeight.w600,
         color: Colors.black87,
       ),
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         label: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               "Email",
-              style: TextStyle(fontSize: 16, color: Colors.black54),
+              style: GoogleFonts.poppins(fontSize: 16, color: Colors.black54),
             ),
-            SizedBox(width: 4),
-            Text("*", style: TextStyle(color: Colors.red)),
+            const SizedBox(width: 4),
+            Text("*", style: GoogleFonts.poppins(color: Colors.red)),
           ],
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        enabledBorder: UnderlineInputBorder(
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
         ),
-        focusedBorder: UnderlineInputBorder(
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black),
         ),
       ),
@@ -153,28 +154,28 @@ class FormFieldEmailConfirm extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       initialValue: "mimimimimi@gmail.com",
-      style: const TextStyle(
+      style: GoogleFonts.poppins(
         fontSize: 22,
         fontWeight: FontWeight.w600,
         color: Colors.black87,
       ),
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         label: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               "Masukkan Email Kembali",
-              style: TextStyle(fontSize: 16, color: Colors.black54),
+              style: GoogleFonts.poppins(fontSize: 16, color: Colors.black54),
             ),
-            SizedBox(width: 4),
-            Text("*", style: TextStyle(color: Colors.red)),
+            const SizedBox(width: 4),
+            Text("*", style: GoogleFonts.poppins(color: Colors.red)),
           ],
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        enabledBorder: UnderlineInputBorder(
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
         ),
-        focusedBorder: UnderlineInputBorder(
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black),
         ),
       ),
@@ -201,9 +202,9 @@ class ButtonSubmit extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        child: const Text(
+        child: Text(
           'Verifikasi',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w700),
         ),
       ),
     );

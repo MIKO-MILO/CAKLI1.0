@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +12,7 @@ class CarialamatView extends GetView<CarialamatController> {
     return Scaffold(
       backgroundColor: const Color(0xFFEBE8E8),
       appBar: AppBar(
-        title: const Text('Cari Alamat'),
+        title: Text('Cari Alamat'),
         backgroundColor: const Color(0xFFEBE8E8),
       ),
       body: Column(
@@ -98,7 +99,10 @@ class CarialamatView extends GetView<CarialamatController> {
           const SizedBox(width: 8),
           Text(
             text,
-            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+            ),
           ),
         ],
       ),

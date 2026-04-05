@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/chat_controller.dart';
 
@@ -58,7 +59,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: Colors.black,
@@ -117,7 +118,7 @@ class ChatPage extends StatelessWidget {
                           msg["type"] == "text"
                               ? Text(
                                   msg["text"],
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                     color: msg["isMe"]
                                         ? Colors.white
                                         : Colors.black,
@@ -136,7 +137,7 @@ class ChatPage extends StatelessWidget {
                           /// JAM DI POJOK KANAN BAWAH
                           Text(
                             msg["time"] ?? "",
-                            style: TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 10,
                               color: msg["isMe"]
                                   ? Colors.white70
@@ -177,7 +178,7 @@ class ChatPage extends StatelessWidget {
                             children: [
                               ListTile(
                                 leading: const Icon(Icons.camera_alt),
-                                title: const Text("Camera"),
+                                title: Text("Camera"),
                                 onTap: () {
                                   Get.back();
                                   controller.pickFromCamera();
@@ -185,7 +186,7 @@ class ChatPage extends StatelessWidget {
                               ),
                               ListTile(
                                 leading: const Icon(Icons.photo),
-                                title: const Text("Gallery"),
+                                title: Text("Gallery"),
                                 onTap: () {
                                   Get.back();
                                   controller.pickFromGallery();

@@ -1,6 +1,7 @@
 import 'package:cakli/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -22,7 +23,7 @@ class HomeView extends GetView<HomeController> {
               ImageHeader(),
               Padding(
                 padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).padding.top * 3.5,
+                  top: MediaQuery.of(context).size.height * 0.18,
                 ),
                 child: TextHeader(),
               ),
@@ -68,7 +69,7 @@ class Profile extends StatelessWidget {
 }
 
 class TextHeader extends StatelessWidget {
-  const TextHeader({super.key});
+  TextHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,8 +78,7 @@ class TextHeader extends StatelessWidget {
         Center(
           child: Text(
             'Mau ke mana, Aul ?',
-            style: const TextStyle(
-              fontFamily: 'Poppins',
+            style: GoogleFonts.poppins(
               fontSize: 32,
               fontWeight: FontWeight.w600,
               color: Colors.white,
@@ -89,8 +89,7 @@ class TextHeader extends StatelessWidget {
         Center(
           child: Text(
             'Jl Gadang omah e uztazah',
-            style: const TextStyle(
-              fontFamily: 'Poppins',
+            style: GoogleFonts.poppins(
               fontSize: 20,
               fontWeight: FontWeight.w400,
               color: Colors.white,
@@ -241,10 +240,10 @@ class SearchLocation extends StatelessWidget {
               color: Color(0xFFF36200),
             ),
             const SizedBox(width: 12),
-            const Expanded(
+            Expanded(
               child: Text(
                 "Cari lokasi tujuan",
-                style: TextStyle(color: Colors.grey, fontSize: 16),
+                style: GoogleFonts.poppins(color: Colors.grey, fontSize: 16),
               ),
             ),
             const Icon(Symbols.search),
@@ -295,14 +294,14 @@ class ListLocation extends GetView<HomeController> {
                         children: [
                           Text(
                             item["title"]!,
-                            style: const TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.w800,
                             ),
                           ),
                           Text(
                             item["subtitle"]!,
-                            style: const TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 14,
                               color: Colors.grey,
                             ),
@@ -405,7 +404,7 @@ class _BuildActionBox extends StatelessWidget {
             Expanded(
               child: Text(
                 text,
-                style: const TextStyle(
+                style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
                   fontSize: 12,
                 ),
