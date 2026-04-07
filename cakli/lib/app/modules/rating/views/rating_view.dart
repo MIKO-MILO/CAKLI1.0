@@ -152,7 +152,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class TextTitle extends StatelessWidget {
-  TextTitle({super.key});
+  const TextTitle({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +177,7 @@ class PictureProfile extends StatelessWidget {
 }
 
 class TextName extends StatelessWidget {
-  TextName({super.key});
+  const TextName({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -227,7 +227,7 @@ class StarsUser extends StatelessWidget {
 }
 
 class TextRating extends StatelessWidget {
-  TextRating({super.key});
+  const TextRating({super.key});
 
   @override
   Widget build(BuildContext context) {

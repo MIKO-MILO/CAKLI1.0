@@ -10,7 +10,7 @@ class PendapatanView extends GetView<PendapatanController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(title: 'Pendapatan'),
+      appBar: CustomAppBar(title: 'Kembali'),
       body: SafeArea(
         child: Container(
           margin: const EdgeInsets.symmetric(vertical: 16),
@@ -404,7 +404,7 @@ class WalletCard extends StatelessWidget {
 }
 
 class TextAddWallet extends StatelessWidget {
-  TextAddWallet({super.key});
+  const TextAddWallet({super.key});
 
   @override
   Widget build(BuildContext context) {

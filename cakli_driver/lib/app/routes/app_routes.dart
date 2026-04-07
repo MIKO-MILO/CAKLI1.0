@@ -14,6 +14,7 @@ abstract class Routes {
   static const PENGATURAN = _Paths.PENGATURAN;
   static const CHAT = _Paths.CHAT;
   static const LISTCHAT = _Paths.LISTCHAT;
+  static const EDITPROFILE = _Paths.EDITPROFILE;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const PENGATURAN = '/pengaturan';
   static const CHAT = '/chat';
   static const LISTCHAT = '/listchat';
+  static const EDITPROFILE = '/editprofile';
 }

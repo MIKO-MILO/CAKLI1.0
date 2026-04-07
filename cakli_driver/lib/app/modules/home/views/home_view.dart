@@ -17,40 +17,8 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       body: Stack(
         children: [
-          SafeArea(
-            child: FlutterMap(
-              options: MapOptions(
-                initialCenter: LatLng(-7.9553, 112.6280),
-                initialZoom: 9.2,
-              ),
-              children: [
-                TileLayer(
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  userAgentPackageName: 'com.cakli.app',
-                  tileProvider: NetworkTileProvider(
-                    httpClient: _HeaderedClient({
-                      'User-Agent': 'com.cakli.app/1.0',
-                    }),
-                  ),
-                ),
-                RichAttributionWidget(
-                  attributions: [
-                    TextSourceAttribution(
-                      'OpenStreetMap contributors',
-                      onTap: () async {
-                        final url = Uri.parse(
-                          'https://openstreetmap.org/copyright',
-                        );
-                        if (!await launchUrl(url)) {
-                          throw Exception('Could not launch $url');
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          MapView(),
+          // HeaderView(),
           Positioned(
             top: MediaQuery.of(context).padding.top,
             left: 0,
@@ -60,6 +28,44 @@ class HomeView extends GetView<HomeController> {
 
           // Navigation
           Positioned(bottom: 20, left: 0, right: 0, child: Navigation()),
+        ],
+      ),
+    );
+  }
+}
+
+class MapView extends StatelessWidget {
+  const MapView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: FlutterMap(
+        options: MapOptions(
+          initialCenter: LatLng(-7.9553, 112.6280),
+          initialZoom: 9.2,
+        ),
+        children: [
+          TileLayer(
+            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            userAgentPackageName: 'com.cakli.app',
+            tileProvider: NetworkTileProvider(
+              httpClient: _HeaderedClient({'User-Agent': 'com.cakli.app/1.0'}),
+            ),
+          ),
+          RichAttributionWidget(
+            attributions: [
+              TextSourceAttribution(
+                'OpenStreetMap contributors',
+                onTap: () async {
+                  final url = Uri.parse('https://openstreetmap.org/copyright');
+                  if (!await launchUrl(url)) {
+                    throw Exception('Could not launch $url');
+                  }
+                },
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -112,27 +118,7 @@ class Header extends StatelessWidget {
             ),
           ),
 
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(30),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.15),
-                  blurRadius: 5,
-                  offset: const Offset(4, 4),
-                ),
-              ],
-            ),
-            child: Text(
-              "Offline",
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
+          StatusButton(),
 
           // Tombol Power
           GestureDetector(
@@ -151,6 +137,50 @@ class Header extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class StatusButton extends StatefulWidget {
+  const StatusButton({super.key});
+
+  @override
+  State<StatusButton> createState() => _StatusButtonState();
+}
+
+class _StatusButtonState extends State<StatusButton> {
+  bool isOnline = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isOnline = !isOnline; // toggle
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 5,
+              offset: const Offset(4, 4),
+            ),
+          ],
+        ),
+        child: Text(
+          isOnline ? "Online" : "Offline",
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            color: isOnline ? Colors.green : Colors.black,
+          ),
+        ),
       ),
     );
   }

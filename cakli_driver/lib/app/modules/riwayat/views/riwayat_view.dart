@@ -13,7 +13,7 @@ class RiwayatView extends GetView<RiwayatController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: Text('Riwayat'), backgroundColor: Colors.white),
+      appBar: CustomAppBar(title: 'Kembali'),
       body: ListView(
         padding: EdgeInsets.only(bottom: 20),
         children: [
@@ -51,6 +51,67 @@ class RiwayatView extends GetView<RiwayatController> {
       ),
     );
   }
+}
+
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  final VoidCallback? onBackPressed;
+  final List<Widget>? actions;
+
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    this.onBackPressed,
+    this.actions,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      bottom: false,
+      child: Container(
+        height: preferredSize.height,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              offset: const Offset(0, 2),
+              blurRadius: 4,
+            ),
+          ],
+          color: Colors.white,
+          border: const Border(
+            bottom: BorderSide(color: Color(0xFFE0E0E0), width: 1),
+          ),
+        ),
+        child: Row(
+          children: [
+            // Tombol Back
+            IconButton(
+              onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
+              icon: const Icon(Icons.arrow_back, color: Colors.black, size: 24),
+            ),
+            // Title
+            Expanded(
+              child: Text(
+                title,
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            // Actions (opsional)
+            if (actions != null) ...actions!,
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(56);
 }
 
 class DateSelector extends StatelessWidget {
@@ -414,7 +475,7 @@ class HistoryView extends StatelessWidget {
                   harga,
                   style: GoogleFonts.poppins(
                     fontSize: 23,
-                    fontWeight: FontWeight.w900,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(

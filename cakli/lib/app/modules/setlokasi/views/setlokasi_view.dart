@@ -12,7 +12,7 @@ class SetlokasiView extends GetView<SetlokasiController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(title: 'Pilih Lokasi'),
+      appBar: CustomAppBar(title: 'Kembali'),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -37,6 +37,7 @@ class SetlokasiView extends GetView<SetlokasiController> {
               children: [
                 Expanded(
                   child: _buildRoundedButton(
+                    context: context,
                     icon: Symbols.map,
                     iconColor: Colors.blue,
                     text: "Pilih lewat peta",
@@ -45,6 +46,7 @@ class SetlokasiView extends GetView<SetlokasiController> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: _buildRoundedButton(
+                    context: context,
                     icon: Symbols.my_location,
                     iconColor: const Color(0xFFD46A2E),
                     text: "Lokasimu sekarang",
@@ -101,13 +103,14 @@ class SetlokasiView extends GetView<SetlokasiController> {
   }
 
   Widget _buildRoundedButton({
+    required BuildContext context,
     required IconData icon,
     required Color iconColor,
     required String text,
   }) {
     return Container(
-      height: 50,
-      padding: const EdgeInsets.all(10),
+      // height: 50,
+      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.001, vertical: MediaQuery.of(context).size.height * 0.01),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(60),

@@ -11,7 +11,7 @@ class EditemailView extends GetView<EditemailController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(title: 'EmailView'),
+      appBar: CustomAppBar(title: 'Kembali'),
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -81,7 +81,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 title,
                 style: GoogleFonts.poppins(
                   fontSize: 18,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w600,
                   color: Colors.black,
                 ),
               ),

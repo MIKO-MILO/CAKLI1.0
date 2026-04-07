@@ -11,7 +11,7 @@ class AktivitasView extends GetView<AktivitasController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(title: "Aktivitas"),
+      appBar: CustomAppBar(title: "Kembali"),
       body: DefaultTabController(
         length: 4,
         child: Column(
@@ -25,18 +25,18 @@ class AktivitasView extends GetView<AktivitasController> {
                   labelColor: Colors.black, // 🔥 warna tab aktif
                   labelStyle: GoogleFonts.poppins(
                     fontSize: 14,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w600,
                     letterSpacing: 0.5,
                   ),
                   unselectedLabelStyle: GoogleFonts.poppins(
                     fontSize: 14,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w600,
                     letterSpacing: 0.5,
                   ),
                   unselectedLabelColor: Colors.grey, // warna tab tidak aktif
                   indicatorColor: const Color(0xFFE45A1F),
                   tabs: const [
-                    Tab(text: "Riwayat"),
+                    Tab(text: "Riwayat",),
                     Tab(text: "Dalam proses"),
                     Tab(text: "Terjadwal"),
                     Tab(text: "Draf"),
@@ -123,7 +123,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 title,
                 style: GoogleFonts.poppins(
                   fontSize: 18,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w600,
                   color: Colors.black,
                 ),
               ),
@@ -186,7 +186,7 @@ class RiwayatCard extends StatelessWidget {
               children: [
                 Header(lokasi: lokasi, harga: harga),
                 Date(tanggal: tanggal),
-                SizedBox(height: 10),
+                SizedBox(height: 15),
                 Bottom(selesai: selesai, rating: rating),
               ],
             ),
@@ -230,12 +230,12 @@ class Header extends StatelessWidget {
       children: [
         Text(
           lokasi,
-          style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700),
+          style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w700),
         ),
 
         Text(
           harga,
-          style: GoogleFonts.poppins(fontSize: 16, color: Colors.grey),
+          style: GoogleFonts.poppins(fontSize: 14, color: Colors.grey),
         ),
       ],
     );
@@ -251,7 +251,7 @@ class Date extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       tanggal,
-      style: GoogleFonts.poppins(color: Colors.grey, fontSize: 14),
+      style: GoogleFonts.poppins(color: Colors.grey, fontSize: 12),
     );
   }
 }
@@ -320,8 +320,8 @@ class Button extends StatelessWidget {
 
             child: Container(
               padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.04,
-                vertical: 7,
+                horizontal: MediaQuery.of(context).size.width * 0.03,
+                vertical: 6,
               ),
               decoration: BoxDecoration(
                 color: const Color(0xFFE04D04),

@@ -16,35 +16,32 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEBEBEB),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Stack(
-            children: [
-              ImageHeader(),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.18,
-                ),
-                child: TextHeader(),
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            ImageHeader(),
+            Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.18,
               ),
+              child: TextHeader(),
+            ),
 
-              Column(
-                children: [
-                  SizedBox(height: 250),
-                  SizedBox(height: 20),
-                  ContainerMap(),
-                  SizedBox(height: 5),
-                  ListLocation(),
-                ],
-              ),
+            Column(
+              children: [
+                SizedBox(height: 230),
+                ContainerMap(),
+                SizedBox(height: 5),
+                ListLocation(),
+              ],
+            ),
 
-              Positioned(
-                top: MediaQuery.of(context).padding.top * 0.5,
-                right: 15,
-                child: Profile(),
-              ),
-            ],
-          ),
+            Positioned(
+              top: MediaQuery.of(context).padding.top * 0.5,
+              right: 15,
+              child: Profile(),
+            ),
+          ],
         ),
       ),
     );
@@ -69,7 +66,7 @@ class Profile extends StatelessWidget {
 }
 
 class TextHeader extends StatelessWidget {
-  TextHeader({super.key});
+  const TextHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +76,7 @@ class TextHeader extends StatelessWidget {
           child: Text(
             'Mau ke mana, Aul ?',
             style: GoogleFonts.poppins(
-              fontSize: 32,
+              fontSize: 24,
               fontWeight: FontWeight.w600,
               color: Colors.white,
             ),
@@ -90,7 +87,7 @@ class TextHeader extends StatelessWidget {
           child: Text(
             'Jl Gadang omah e uztazah',
             style: GoogleFonts.poppins(
-              fontSize: 20,
+              fontSize: 14,
               fontWeight: FontWeight.w400,
               color: Colors.white,
             ),
@@ -266,7 +263,14 @@ class ListLocation extends GetView<HomeController> {
         padding: const EdgeInsets.symmetric(vertical: 0),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         child: Obx(
           () => ListView.separated(
@@ -284,25 +288,29 @@ class ListLocation extends GetView<HomeController> {
                   vertical: 5,
                 ),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset('assets/images/icon/jam.png', width: 30),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             item["title"]!,
                             style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w800,
+                              fontSize: 12,
+                              height: 1.3,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           Text(
                             item["subtitle"]!,
                             style: GoogleFonts.poppins(
-                              fontSize: 14,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w300,
                               color: Colors.grey,
                             ),
                           ),

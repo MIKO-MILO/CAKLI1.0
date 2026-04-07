@@ -1,4 +1,4 @@
-import 'package:cakli/app/routes/app_pages.dart';
+import 'package:cakli_driver/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -273,7 +273,7 @@ class ButtonSubmit extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 1,
       child: TextButton(
         onPressed: () {
-          Get.toNamed(Routes.SETTING);
+          Get.toNamed(Routes.HOME);
         },
         style: TextButton.styleFrom(
           backgroundColor: const Color(0xFFE04D04),

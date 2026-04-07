@@ -211,13 +211,6 @@ class SettingWhiteView extends StatelessWidget {
             },
           ),
 
-          ListTile(
-            leading: const Icon(Symbols.settings, fill: 1),
-            title: Text('MAPTEST'),
-            onTap: () {
-              Get.toNamed(Routes.MAPTEST);
-            },
-          ),
         ],
       ),
     );
@@ -256,7 +249,7 @@ class SettingRedView extends StatelessWidget {
               'Keluar',
               style: GoogleFonts.poppins(
                 color: Colors.redAccent,
-                fontWeight: FontWeight.w900,
+                fontWeight: FontWeight.w600,
               ),
             ),
             onTap: () {
@@ -274,7 +267,7 @@ class SettingRedView extends StatelessWidget {
               'Hapus Akun',
               style: GoogleFonts.poppins(
                 color: Colors.redAccent,
-                fontWeight: FontWeight.w900,
+                fontWeight: FontWeight.w600,
               ),
             ),
 

@@ -1,3 +1,4 @@
+import 'package:cakli_driver/app/modules/home/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -17,45 +18,105 @@ class AntarorderView extends GetView<AntarorderController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('AntarorderView'), centerTitle: true),
-      body: Stack(
-        children: [
-          SafeArea(
-            child: FlutterMap(
-              options: MapOptions(
-                initialCenter: LatLng(-7.9553, 112.6280),
-                initialZoom: 9.2,
+      appBar: CustomAppBar(title: 'Kembali'),
+      body: Stack(children: [MapView(), PopupMenu()]),
+    );
+  }
+}
+
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  final VoidCallback? onBackPressed;
+  final List<Widget>? actions;
+
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    this.onBackPressed,
+    this.actions,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      bottom: false,
+      child: Container(
+        height: preferredSize.height,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              offset: const Offset(0, 2),
+              blurRadius: 4,
+            ),
+          ],
+          color: Colors.white,
+          border: const Border(
+            bottom: BorderSide(color: Color(0xFFE0E0E0), width: 1),
+          ),
+        ),
+        child: Row(
+          children: [
+            // Tombol Back
+            IconButton(
+              onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
+              icon: const Icon(Icons.arrow_back, color: Colors.black, size: 24),
+            ),
+            // Title
+            Expanded(
+              child: Text(
+                title,
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
               ),
-              children: [
-                TileLayer(
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  userAgentPackageName: 'com.cakli.app',
-                  tileProvider: NetworkTileProvider(
-                    httpClient: _HeaderedClient({
-                      'User-Agent': 'com.cakli.app/1.0',
-                    }),
-                  ),
-                ),
-                RichAttributionWidget(
-                  attributions: [
-                    TextSourceAttribution(
-                      'OpenStreetMap contributors',
-                      onTap: () async {
-                        final url = Uri.parse(
-                          'https://openstreetmap.org/copyright',
-                        );
-                        if (!await launchUrl(url)) {
-                          throw Exception('Could not launch $url');
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ],
+            ),
+            // Actions (opsional)
+            if (actions != null) ...actions!,
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(56);
+}
+
+class MapView extends StatelessWidget {
+  const MapView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: FlutterMap(
+        options: MapOptions(
+          initialCenter: LatLng(-7.9553, 112.6280),
+          initialZoom: 9.2,
+        ),
+        children: [
+          TileLayer(
+            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            userAgentPackageName: 'com.cakli.app',
+            tileProvider: NetworkTileProvider(
+              httpClient: _HeaderedClient({'User-Agent': 'com.cakli.app/1.0'}),
             ),
           ),
-
-          PopupMenu(),
+          RichAttributionWidget(
+            attributions: [
+              TextSourceAttribution(
+                'OpenStreetMap contributors',
+                onTap: () async {
+                  final url = Uri.parse('https://openstreetmap.org/copyright');
+                  if (!await launchUrl(url)) {
+                    throw Exception('Could not launch $url');
+                  }
+                },
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -384,7 +445,7 @@ class Popupslider extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 24, horizontal: 20),
       child: SlideAction(
-        text: "Penumpang Sampai Tujuan",
+        text: "Turunkan Penumpang",
         textStyle: GoogleFonts.poppins(
           color: Colors.white,
           fontWeight: FontWeight.w700,
@@ -393,7 +454,7 @@ class Popupslider extends StatelessWidget {
         innerColor: Colors.white,
         elevation: 0,
         onSubmit: () {
-          Get.to(() => AntarorderView());
+          Get.to(() => HomeView());
           return null; // pindah halaman
         },
       ),

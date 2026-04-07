@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:cakli_driver/app/modules/chat/views/chat_view.dart';
 
 import '../controllers/listchat_controller.dart';
 
@@ -10,7 +11,7 @@ class ListchatView extends GetView<ListchatController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(title: 'Daftar Pesan'),
+      appBar: CustomAppBar(title: 'Kembali'),
       body: ChatPage(),
     );
   }
@@ -60,7 +61,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 title,
                 style: GoogleFonts.poppins(
                   fontSize: 18,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w600,
                   color: Colors.black,
                 ),
               ),
@@ -84,41 +85,46 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => ListView.separated(
-        itemCount: controller.chats.length,
-        separatorBuilder: (_, _) => Divider(
-          color: Colors.orange.shade200,
-          thickness: 1,
-          indent: 16,
-          endIndent: 16,
-        ),
-        itemBuilder: (context, index) {
-          var chat = controller.chats[index];
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => ChatView());
+      },
+      child: Obx(
+        () => ListView.separated(
+          itemCount: controller.chats.length,
+          separatorBuilder: (_, _) => Divider(
+            color: Color(0xFFE04D04),
+            thickness: 1,
+            indent: 16,
+            endIndent: 16,
+          ),
+          itemBuilder: (context, index) {
+            var chat = controller.chats[index];
 
-          return ListTile(
-            leading: CircleAvatar(
-              radius: 24,
-              backgroundColor: Colors.grey.shade300,
-              child: Icon(Icons.person, color: Colors.grey.shade700),
-            ),
-            title: Text(
-              chat["name"]!,
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w700,
-                fontSize: 18,
+            return ListTile(
+              leading: CircleAvatar(
+                radius: 24,
+                backgroundColor: Colors.grey.shade300,
+                child: Icon(Icons.person, color: Colors.grey.shade700),
               ),
-            ),
-            subtitle: Text(
-              chat["message"]!,
-              style: GoogleFonts.poppins(color: Colors.black54),
-            ),
-            trailing: Text(
-              chat["time"]!,
-              style: GoogleFonts.poppins(color: Colors.grey),
-            ),
-          );
-        },
+              title: Text(
+                chat["name"]!,
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 18,
+                ),
+              ),
+              subtitle: Text(
+                chat["message"]!,
+                style: GoogleFonts.poppins(color: Colors.black54),
+              ),
+              trailing: Text(
+                chat["time"]!,
+                style: GoogleFonts.poppins(color: Colors.grey),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

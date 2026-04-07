@@ -232,11 +232,10 @@ class _EditButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => Get.toNamed(Routes.EDITPROFILE),
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: const Color(0xFFF5F5F5),
           borderRadius: BorderRadius.circular(8),
         ),
         child: const Icon(Icons.edit, size: 18, color: Color(0xFF424242)),
@@ -412,7 +411,7 @@ class RatingCustomer extends StatelessWidget {
 }
 
 class TextMenuLainya extends StatelessWidget {
-  TextMenuLainya({super.key});
+  const TextMenuLainya({super.key});
 
   @override
   Widget build(BuildContext context) {
