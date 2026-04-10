@@ -45,6 +45,10 @@ dependencies:
   url_launcher: ^6.3.2
   google_fonts: ^8.0.2
   image_picker: ^1.2.1
+  shared_preferences: ^2.2.2
+  google_sign_in: ^6.2.1        # Aktifkan saat implementasi Google login
+  sign_in_with_apple: ^6.1.0    # Aktifkan saat implementasi Apple login
+  flutter_secure_storage: ^9.0.0 # Untuk simpan token dengan aman
 
 dev_dependencies:
   flutter_test:

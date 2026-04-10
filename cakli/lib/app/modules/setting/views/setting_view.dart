@@ -1,9 +1,11 @@
 import 'package:cakli/app/routes/app_pages.dart';
+import 'package:cakli/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:get/get.dart';
 import '../controllers/setting_controller.dart';
+import '../../../../services/api_service.dart';
 
 class SettingView extends GetView<SettingController> {
   const SettingView({super.key});
@@ -56,34 +58,52 @@ class ProfileTop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
+    final ApiService apiService = ApiService();
 
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            children: [
-              ProfileImage(),
-              const SizedBox(width: 20),
-              TextProfile(),
-            ],
-          ),
-          ButtonProfile(),
-        ],
-      ),
+    return FutureBuilder<List<User>>(
+      future: apiService.getUsers(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final users = snapshot.data as List<User>;
+          final user = users[0];
+
+          return Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    ProfileImage(),
+                    const SizedBox(width: 20),
+                    TextProfile(
+                      name: user.name,
+                      email: user.email,
+                      phone: user.phone,
+                    ),
+                  ],
+                ),
+                ButtonProfile(),
+              ],
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Text("Error: ${snapshot.error}");
+        }
+
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }
@@ -103,7 +123,16 @@ class ProfileImage extends StatelessWidget {
 }
 
 class TextProfile extends StatelessWidget {
-  const TextProfile({super.key});
+  final String name;
+  final String email;
+  final String phone;
+
+  const TextProfile({
+    super.key,
+    required this.name,
+    required this.email,
+    required this.phone,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +140,11 @@ class TextProfile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Aulia Sukma',
+          name,
           style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700),
         ),
-        Text('auliasr.edu@gmail.com'),
-        Text('0821345678'),
+        Text(email),
+        Text(phone),
       ],
     );
   }
@@ -210,7 +239,6 @@ class SettingWhiteView extends StatelessWidget {
               // Aksi saat menu Privasi ditekan
             },
           ),
-
         ],
       ),
     );

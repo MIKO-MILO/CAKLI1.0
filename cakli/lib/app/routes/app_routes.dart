@@ -25,6 +25,7 @@ abstract class Routes {
   static const PESANDRIVER = _Paths.PESANDRIVER;
   static const RATING = _Paths.RATING;
   static const VOUCHER = _Paths.VOUCHER;
+  static const LOGIN = _Paths.LOGIN;
 }
 
 abstract class _Paths {
@@ -51,4 +52,5 @@ abstract class _Paths {
   static const PESANDRIVER = '/pesandriver';
   static const RATING = '/rating';
   static const VOUCHER = '/voucher';
+  static const LOGIN = '/login';
 }
