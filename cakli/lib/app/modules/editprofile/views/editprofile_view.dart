@@ -1,4 +1,3 @@
-import 'package:cakli/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,31 +10,36 @@ class EditprofileView extends GetView<EditprofileController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(title: 'Kembali'),
+      body: Obx(() {
+        if (controller.isLoading.value) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Container(
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Column(
-                children: [
-                  SizedBox(height: 80),
-                  PictureProfile(),
-                  TextEditButton(),
-                  SizedBox(height: 50),
-                  FormFieldName(),
-                  SizedBox(height: 20),
-                  FormFieldEmail(),
-                  SizedBox(height: 20),
-                  FormFieldPhone(),
-                  SizedBox(height: 40),
-                  ButtonSubmit(),
-                ],
+        return SingleChildScrollView(
+          child: Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Column(
+                  children: [
+                    SizedBox(height: 80),
+                    PictureProfile(),
+                    TextEditButton(),
+                    SizedBox(height: 50),
+                    FormFieldName(),
+                    SizedBox(height: 20),
+                    FormFieldEmail(),
+                    SizedBox(height: 20),
+                    FormFieldPhone(),
+                    SizedBox(height: 40),
+                    ButtonSubmit(),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }
@@ -156,13 +160,13 @@ class TextEditButton extends StatelessWidget {
   }
 }
 
-class FormFieldName extends StatelessWidget {
+class FormFieldName extends GetView<EditprofileController> {
   const FormFieldName({super.key});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: "Ustadzah",
+      controller: controller.nameController,
       style: GoogleFonts.poppins(
         fontSize: 22,
         fontWeight: FontWeight.w600,
@@ -192,13 +196,13 @@ class FormFieldName extends StatelessWidget {
   }
 }
 
-class FormFieldPhone extends StatelessWidget {
+class FormFieldPhone extends GetView<EditprofileController> {
   const FormFieldPhone({super.key});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: "08123456567",
+      controller: controller.phoneController,
       style: GoogleFonts.poppins(
         fontSize: 22,
         fontWeight: FontWeight.w600,
@@ -228,13 +232,13 @@ class FormFieldPhone extends StatelessWidget {
   }
 }
 
-class FormFieldEmail extends StatelessWidget {
+class FormFieldEmail extends GetView<EditprofileController> {
   const FormFieldEmail({super.key});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: "mimimimimi@gmail.com",
+      controller: controller.emailController,
       style: GoogleFonts.poppins(
         fontSize: 22,
         fontWeight: FontWeight.w600,
@@ -264,7 +268,7 @@ class FormFieldEmail extends StatelessWidget {
   }
 }
 
-class ButtonSubmit extends StatelessWidget {
+class ButtonSubmit extends GetView<EditprofileController> {
   const ButtonSubmit({super.key});
 
   @override
@@ -273,7 +277,7 @@ class ButtonSubmit extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 1,
       child: TextButton(
         onPressed: () {
-          Get.toNamed(Routes.SETTING);
+          controller.updateProfile();
         },
         style: TextButton.styleFrom(
           backgroundColor: const Color(0xFFE04D04),

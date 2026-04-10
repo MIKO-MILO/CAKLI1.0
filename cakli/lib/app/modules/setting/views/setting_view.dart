@@ -60,12 +60,11 @@ class ProfileTop extends StatelessWidget {
   Widget build(BuildContext context) {
     final ApiService apiService = ApiService();
 
-    return FutureBuilder<List<User>>(
-      future: apiService.getUsers(),
+    return FutureBuilder<User>(
+      future: apiService.getProfile(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          final users = snapshot.data as List<User>;
-          final user = users[0];
+          final user = snapshot.data as User;
 
           return Container(
             padding: const EdgeInsets.all(20),
@@ -245,7 +244,7 @@ class SettingWhiteView extends StatelessWidget {
   }
 }
 
-class SettingRedView extends StatelessWidget {
+class SettingRedView extends GetView<SettingController> {
   const SettingRedView({super.key});
 
   @override
@@ -281,7 +280,7 @@ class SettingRedView extends StatelessWidget {
               ),
             ),
             onTap: () {
-              // Aksi saat menu Privasi ditekan
+              controller.logout();
             },
           ),
 

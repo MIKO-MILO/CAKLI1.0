@@ -119,7 +119,7 @@ class LoginHeader extends StatelessWidget {
             'assets/images/logo.png',
             height: 72,
             width: 72,
-            errorBuilder: (_, __, _) => Container(
+            errorBuilder: (_, _, _) => Container(
               height: 72,
               width: 72,
               decoration: BoxDecoration(
@@ -407,8 +407,9 @@ class EmailInputField extends GetView<LoginController> {
             ),
           ),
           validator: (value) {
-            if (value == null || value.isEmpty)
+            if (value == null || value.isEmpty) {
               return 'Email tidak boleh kosong';
+            }
             final emailRegex = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
             if (!emailRegex.hasMatch(value)) return 'Format email tidak valid';
             return null;
@@ -508,8 +509,9 @@ class PasswordInputField extends GetView<LoginController> {
               ),
             ),
             validator: (value) {
-              if (value == null || value.isEmpty)
+              if (value == null || value.isEmpty) {
                 return 'Password tidak boleh kosong';
+              }
               if (value.length < 6) return 'Password minimal 6 karakter';
               return null;
             },

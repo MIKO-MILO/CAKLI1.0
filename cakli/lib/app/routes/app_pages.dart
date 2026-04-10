@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../middleware/auth_middleware.dart';
 import '../modules/aktivitas/bindings/aktivitas_binding.dart';
 import '../modules/aktivitas/views/aktivitas_view.dart';
 import '../modules/carialamat/bindings/carialamat_binding.dart';
@@ -52,6 +53,7 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.SPLASHSCREEN,
@@ -62,81 +64,97 @@ class AppPages {
       name: _Paths.MAPTEST,
       page: () => const MaptestView(),
       binding: MaptestBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.EDITPROFILE,
       page: () => const EditprofileView(),
       binding: EditprofileBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.SETTING,
       page: () => const SettingView(),
       binding: SettingBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.EDITPIN,
       page: () => const EditpinView(),
       binding: EditpinBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.EDITEMAIL,
       page: () => const EditemailView(),
       binding: EditemailBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.EDITALAMAT,
       page: () => const EditalamatView(),
       binding: EditalamatBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.TAMBAHALAMAT,
       page: () => const TambahalamatView(),
       binding: TambahalamatBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.CARIALAMAT,
       page: () => const CarialamatView(),
       binding: CarialamatBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.SETLOKASI,
       page: () => const SetlokasiView(),
       binding: SetlokasiBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.AKTIVITAS,
       page: () => const AktivitasView(),
       binding: AktivitasBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.PESAN,
       page: () => const PesanView(),
       binding: PesanBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.PESANALAMAT,
       page: () => const PesanalamatView(),
       binding: PesanalamatBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.CHAT,
       page: () => const ChatView(),
       binding: ChatBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.PESANDRIVER,
       page: () => const PesandriverView(),
       binding: PesandriverBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.RATING,
       page: () => const RatingView(),
       binding: RatingBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.VOUCHER,
       page: () => const VoucherView(),
       binding: VoucherBinding(),
+      middlewares: [AuthMiddleware()],
     ),
     GetPage(
       name: _Paths.LOGIN,

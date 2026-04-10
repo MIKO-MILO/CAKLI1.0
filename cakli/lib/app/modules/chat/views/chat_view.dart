@@ -1,4 +1,5 @@
-import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'dart:io' as io;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -133,7 +134,9 @@ class ChatBox extends StatelessWidget {
                           )
                         : ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child: Image.file(File(msg["image"]), width: 150),
+                            child: kIsWeb
+                                ? Image.network(msg["image"], width: 150)
+                                : Image.file(io.File(msg["image"]), width: 150),
                           ),
 
                     const SizedBox(height: 5),

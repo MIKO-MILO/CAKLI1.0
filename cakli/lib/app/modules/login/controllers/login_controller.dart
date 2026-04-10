@@ -1,12 +1,11 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
 import '../../../../services/auth_service.dart';
 import '../models/login_models.dart';
+import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
   final formKey = GlobalKey<FormState>();
@@ -52,8 +51,10 @@ class LoginController extends GetxController {
               message: 'Selamat datang kembali di CakLi!',
             ),
           );
-          // TODO: navigasi
-          // Get.offAllNamed(Routes.HOME);
+          // Tunggu sebentar sebelum navigasi agar alert sempat tampil
+          Future.delayed(const Duration(seconds: 1), () {
+            Get.offAllNamed(Routes.HOME);
+          });
           break;
         case 401:
           showAlert(
@@ -101,20 +102,17 @@ class LoginController extends GetxController {
             ),
           );
       }
-    } on SocketException {
-      showAlert(
-        AlertData.error(
-          title: 'Koneksi Bermasalah',
-          message: 'Periksa koneksi internet kamu dan coba lagi.',
-        ),
-      );
-    } catch (_) {
-      showAlert(
-        AlertData.warning(
-          title: 'Server Tidak Tersedia',
-          message: 'Tidak dapat menghubungi server. Coba lagi nanti.',
-        ),
-      );
+    } catch (e) {
+      String title = 'Server Tidak Tersedia';
+      String message = 'Tidak dapat menghubungi server. Coba lagi nanti.';
+
+      if (e.toString().contains('SocketException') ||
+          e.toString().contains('Connection failed')) {
+        title = 'Koneksi Bermasalah';
+        message = 'Periksa koneksi internet kamu dan coba lagi.';
+      }
+
+      showAlert(AlertData.error(title: title, message: message));
     } finally {
       isLoading.value = false;
     }
