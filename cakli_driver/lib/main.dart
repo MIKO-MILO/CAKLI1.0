@@ -4,12 +4,26 @@ import 'package:get/get.dart';
 
 import 'app/routes/app_pages.dart';
 
-void main() {
+import 'package:cakli_driver/services/token_service.dart';
+
+String _getInitialRoute() {
+  if (TokenService.isLoggedIn) {
+    return Routes.HOME; // atau halaman utama kamu
+  } else {
+    return Routes.LOGIN;
+  }
+}
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // 🔥 INIT TOKEN DULU
+  await TokenService.init();
+
   runApp(
     GetMaterialApp(
       title: "Application",
-      initialRoute: AppPages.INITIAL,
+      initialRoute: _getInitialRoute(), // 🔥 pakai function
       getPages: AppPages.routes,
       theme: ThemeData(),
       builder: (context, child) {

@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:cakli/models/user_model.dart';
+import 'package:cakli_driver/models/driver_model.dart';
 import 'token_service.dart';
 
 class ApiService {
   // IP Laptop Anda (cek cmd: ipconfig) agar bisa diakses dari HP asli dalam 1 WiFi
   // Ganti dengan IP laptop Anda jika mengetes di HP asli
-  static const String _laptopIp = "192.168.1.100"; 
+  static const String _laptopIp = "192.168.1.100";
 
   static String get baseUrl {
     if (kIsWeb) return "http://localhost:8080";
@@ -19,44 +19,48 @@ class ApiService {
     return "http://localhost:8080";
   }
 
-  Future<User> getProfile() async {
+  Future<Driver> getDriverProfile() async {
     final token = await TokenService.getToken();
 
     if (token == null) {
       throw Exception("Token tidak ditemukan, login dulu");
     }
 
-    final response = await http.get(
-      Uri.parse('$baseUrl/api/v1/user/auth/me'),
-      headers: {'Authorization': 'Bearer $token'},
-    ).timeout(const Duration(seconds: 10));
+    final response = await http
+        .get(
+          Uri.parse('$baseUrl/api/v1/driver/auth/me'), // ✅ FIX
+          headers: {'Authorization': 'Bearer $token'},
+        )
+        .timeout(const Duration(seconds: 10));
 
     final body = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
-      return User.fromJson(body['data']);
+      return Driver.fromJson(body['data']);
     } else {
       throw Exception(body['message'] ?? "Gagal mengambil profil");
     }
   }
 
-  Future<List<User>> getUsers() async {
+  Future<List<Driver>> getDrivers() async {
     final token = await TokenService.getToken();
 
     if (token == null) {
       throw Exception("Token tidak ditemukan, login dulu");
     }
 
-    final response = await http.get(
-      Uri.parse('$baseUrl/api/v1/admin/users'),
-      headers: {'Authorization': 'Bearer $token'},
-    ).timeout(const Duration(seconds: 10));
+    final response = await http
+        .get(
+          Uri.parse('$baseUrl/api/v1/admin/driver'),
+          headers: {'Authorization': 'Bearer $token'},
+        )
+        .timeout(const Duration(seconds: 10));
 
     final body = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
       final List data = body['data'];
-      return data.map((e) => User.fromJson(e)).toList();
+      return data.map((e) => Driver.fromJson(e)).toList();
     } else {
       throw Exception(body['message']);
     }

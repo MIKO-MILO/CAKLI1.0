@@ -118,6 +118,10 @@ class _UserInfoCard extends GetView<ProfilController> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 24, 20, 24),
               child: Obx(() {
+                if (controller.isLoading.value) {
+                  return Center(child: CircularProgressIndicator());
+                }
+
                 final user = controller.user.value;
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -159,7 +163,8 @@ class _UserInfoCard extends GetView<ProfilController> {
                             ),
                           ),
                           Text(
-                            user.userId,
+                            // user.userId,
+                            'AD7890D',
                             style: GoogleFonts.poppins(
                               fontSize: 13,
                               color: Color(0xFF757575),
@@ -235,9 +240,7 @@ class _EditButton extends StatelessWidget {
       onTap: () => Get.toNamed(Routes.EDITPROFILE),
       child: Container(
         padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
         child: const Icon(Icons.edit, size: 18, color: Color(0xFF424242)),
       ),
     );
@@ -626,7 +629,7 @@ class MenuLainya extends StatelessWidget {
   }
 }
 
-class MenuLainyaDanger extends StatelessWidget {
+class MenuLainyaDanger extends GetView<ProfilController> {
   const MenuLainyaDanger({super.key});
 
   @override
@@ -662,7 +665,7 @@ class MenuLainyaDanger extends StatelessWidget {
               ),
             ),
             onTap: () {
-              // Aksi saat menu Privasi ditekan
+              controller.logout();
             },
           ),
         ],

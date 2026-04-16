@@ -1,34 +1,52 @@
-
-import 'package:cakli_driver/app/modules/profil/views/profil_view.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:cakli_driver/services/api_service.dart';
+import 'package:cakli_driver/app/modules/profil/views/profil_view.dart';
+import '../../../../services/token_service.dart';
+import '../../../routes/app_pages.dart';
 
 class ProfilController extends GetxController {
-  //TODO: Implement ProfilController
-
-  final count = 0.obs;
-
-
-
-  void increment() => count.value++;
+  final ApiService apiService = ApiService();
 
   final Rx<UserModel> user = UserModel(
-    name: 'Aulia Sukma R.',
-    email: 'auliasr.edu@gmail.com',
-    phone: '+6212312312323123',
-    userId: 'AD527A4PE',
+    name: '',
+    email: '',
+    phone: '',
+    userId: '',
   ).obs;
 
+  final isLoading = true.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchProfile();
+  }
+
+  Future<void> fetchProfile() async {
+    try {
+      isLoading.value = true;
+
+      final driver = await apiService.getDriverProfile();
+
+      user.value = UserModel(
+        name: driver.name,
+        email: driver.email,
+        phone: driver.phone,
+        userId: driver.id,
+      );
+    } catch (e) {
+      print("ERROR FETCH PROFILE: $e");
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
   void onEditTapped() {
-    // Navigate to edit profile page
-    Get.snackbar(
-      'Edit Profile',
-      'Buka halaman edit profil...',
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: const Color(0xFFD84315),
-      colorText: Colors.white,
-      borderRadius: 12,
-      margin: const EdgeInsets.all(16),
-    );
+    Get.snackbar('Edit Profile', 'Buka halaman edit profil...');
+  }
+
+  Future<void> logout() async {
+    await TokenService.clearToken();
+    Get.offAllNamed(Routes.LOGIN);
   }
 }

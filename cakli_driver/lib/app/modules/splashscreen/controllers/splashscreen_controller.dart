@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../../../services/token_service.dart';
 
 class SplashscreenController extends GetxController {
   final count = 0.obs;
@@ -28,7 +29,12 @@ class SplashscreenController extends GetxController {
 
     await Future.delayed(const Duration(milliseconds: 2500));
 
-    Get.offAllNamed(Routes.HOME);
+    final token = await TokenService.getToken();
+    if (token != null) {
+      Get.offAllNamed(Routes.HOME);
+    } else {
+      Get.offAllNamed(Routes.LOGIN);
+    }
   }
 
   @override

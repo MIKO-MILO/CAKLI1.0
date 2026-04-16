@@ -84,7 +84,7 @@ class ProfileTop extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    ProfileImage(),
+                    ProfileImage(imageUrl: user.imageUrl),
                     const SizedBox(width: 20),
                     TextProfile(
                       name: user.name,
@@ -108,15 +108,38 @@ class ProfileTop extends StatelessWidget {
 }
 
 class ProfileImage extends StatelessWidget {
-  const ProfileImage({super.key});
+  const ProfileImage({super.key, required this.imageUrl});
+
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      'assets/images/setting/profile.png',
-      width: 60,
-      height: 60,
-      fit: BoxFit.cover,
+    // Jika imageUrl adalah URL internet (dimulai dengan http), gunakan Image.network
+    if (imageUrl.startsWith('http')) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(30),
+        child: Image.network(
+          imageUrl,
+          width: 60,
+          height: 60,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            // Fallback jika gambar gagal dimuat
+            return Image.asset(
+              'assets/images/setting/profile.png',
+              width: 60,
+              height: 60,
+              fit: BoxFit.cover,
+            );
+          },
+        ),
+      );
+    }
+
+    // Jika bukan URL (misal asset lokal), gunakan Image.asset
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30),
+      child: Image.asset(imageUrl, width: 60, height: 60, fit: BoxFit.cover),
     );
   }
 }
