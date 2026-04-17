@@ -1,3 +1,4 @@
+import 'package:cakli_driver/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,10 +38,33 @@ class SplashscreenController extends GetxController {
     }
   }
 
+  final api = ApiService();
+
   @override
   void onInit() {
-    startAnimation();
     super.onInit();
+    startAnimation();
+    checkAuth();
   }
 
+  Future<void> checkAuth() async {
+    try {
+      final token = await TokenService.getToken();
+
+      if (token == null) {
+        Get.offAllNamed(Routes.LOGIN);
+        return;
+      }
+
+      // 🔥 cek token ke backend
+      await api.getDriverProfile();
+
+      // kalau valid
+      Get.offAllNamed(Routes.HOME);
+    } catch (e) {
+      // kalau error / expired
+      await TokenService.clearToken();
+      Get.offAllNamed(Routes.LOGIN);
+    }
+  }
 }

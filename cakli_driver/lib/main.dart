@@ -23,7 +23,7 @@ void main() async {
   runApp(
     GetMaterialApp(
       title: "Application",
-      initialRoute: _getInitialRoute(), // 🔥 pakai function
+      initialRoute: Routes.SPLASHSCREEN, // 🔥 pakai function
       getPages: AppPages.routes,
       theme: ThemeData(),
       builder: (context, child) {

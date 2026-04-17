@@ -1,5 +1,8 @@
 import 'dart:convert';
+import 'package:cakli_driver/app/routes/app_pages.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:http/http.dart' as http;
 import 'package:cakli_driver/models/driver_model.dart';
 import 'token_service.dart';
@@ -33,6 +36,8 @@ class ApiService {
         )
         .timeout(const Duration(seconds: 10));
 
+    await _handleUnauthorized(response);
+
     final body = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
@@ -56,6 +61,8 @@ class ApiService {
         )
         .timeout(const Duration(seconds: 10));
 
+    await _handleUnauthorized(response);
+
     final body = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
@@ -63,6 +70,16 @@ class ApiService {
       return data.map((e) => Driver.fromJson(e)).toList();
     } else {
       throw Exception(body['message']);
+    }
+  }
+
+  Future<void> _handleUnauthorized(http.Response response) async {
+    if (response.statusCode == 401) {
+      // 🔥 hapus token
+      await TokenService.clearToken();
+
+      // 🔥 redirect ke login (reset semua route)
+      Get.offAllNamed(Routes.LOGIN);
     }
   }
 }
